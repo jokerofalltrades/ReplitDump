@@ -1,0 +1,14 @@
+hexadecimal = ["0","0000","1","0001","2","0010","3","0011","4","0100","5","0101","6","0110","7","0111","8","1000","9","1001","A","1010","B","1011","C","1100","D","1101","E","1110","F","1111"]
+hexnum = input("Enter a hex number:")
+binarynum = ""
+v = 0
+while v < len(hexnum):
+    i = 0
+    while i <= 15:
+        if hexadecimal[(i*2)-1] == hexnum[v]:
+            binarynum += str(hexadecimal[i*2])
+        i+=1
+    v+=1
+    print(binarynum)
+
+print(binarynum)
