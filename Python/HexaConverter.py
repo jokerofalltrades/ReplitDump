@@ -5,10 +5,8 @@ v = 0
 while v < len(hexnum):
     i = 0
     while i <= 15:
-        if hexadecimal[(i*2)-1] == hexnum[v]:
-            binarynum += str(hexadecimal[i*2])
+        if hexadecimal[(i*2)] == hexnum[v]:
+            binarynum += str(hexadecimal[i*2+1])
         i+=1
     v+=1
-    print(binarynum)
-
 print(binarynum)
