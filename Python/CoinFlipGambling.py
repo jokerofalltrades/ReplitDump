@@ -32,7 +32,7 @@ while money > 0:
     print(f"The Flipper: You currently have {money} money.")
     print("The Flipper: Do you want to bet on heads, tails, or landing on its edge.")
     bet = input("The Flipper: Odds: Heads - x1.9 your stake, Tails - x1.9 your stake, Edge - x500 your stake (Enter Heads, Tails or Edge)")
-    while stake >= money or stake == 0:
+    while stake >= money or stake <= 0:
         stake = int(input("How much do you want to bet?"))
     bet = bet.lower()
     money -= stake
