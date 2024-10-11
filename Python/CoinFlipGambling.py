@@ -4,6 +4,7 @@ money = 100
 answerGiven = 0
 flips = 0
 oldManEncounters = 0
+oldManPower = 0
 
 print("The Flipper: Welcome to the world's best casino: We have one enthralling game here.")
 print("The Flipper: Our game is gambling on a coin flip. You start with 100 money.")
@@ -37,6 +38,7 @@ while money > 0:
     money -= stake
     flips += 1
     coinFlipDecider = random.randint(1,10000)
+    if oldManPower > 0: coinFlipDecider = 1
     if coinFlipDecider <= 4999: result = "heads"
     if coinFlipDecider >= 5002: result = "tails"
     if coinFlipDecider >= 5000 and coinFlipDecider <= 5001: result = "edge"
@@ -63,11 +65,24 @@ while money > 0:
     if response == "2":
         newSaveCode = f"ValidSave:Money:{money}Flips:{flips}OldMan:{oldManEncounters}".encode("utf-8").hex()
         print(f"Mysterious Man: {newSaveCode}")
+    if oldManPower > 0: oldManPower -= 1
     if random.randint(1,100) == 100:
         if oldManEncounters == 0:
             print("???: Psst... Hey Kid!")
             print("Wise Old Man: Kid, don't bet on edge, the odds are 1 in 5000!")
             print("Wise Old Man: These yung'uns could really use some help...")
             oldManEncounters += 1
+        elif oldManEncounters == 1:
+            print("Wise Old Man: Bet heads next time.")
+            print("Wise Old Man: I promise you will win.")
+            print("Wise Old Man: Give it everything you have.")
+            oldManPower = 1
+            oldManEncounters += 1
+        elif oldManEncounters == 2:
+            print("Wise Old Man: The Flipper is trying to 73696C656E6365 me.")
+            print("Wise Old Man: I don't have long before I'm 676F6E650A.")
+            print("Wise Old Man: Good Luck and bet on 6865616473 for the next 7468726565 goes.")
+            oldManEncounters += 1
+            oldManPower = 3
 
 print("The Flipper: Thanks for playing! See you again soon!")
