@@ -6,13 +6,19 @@ flips = 0
 oldManEncounters = 0
 oldManPower = 0
 winInARow = 0
+_5FlipDialogue = 0
+_5FlipDialogue2 = 0
+_10FlipDialogue = 0
+_10FlipDialogue2 = 0
+taxDialogue = 0
+
 
 def saveCodeGenerator():
     newSaveCode = f"ValidSave:Money:{money}Flips:{flips}OldMan:{oldManEncounters}OldManPow:{oldManPower}WinRow:{winInARow}".encode("utf-8").hex()
     return newSaveCode
 
 print("The Flipper: Welcome to the world's best casino: We have one enthralling game here.")
-print("The Flipper: Our game is gambling on a coin flip. You start with 100 money.")
+print("The Flipper: Our game is gambling on a coin flip. You start with 100 flipcoin.")
 hereBefore = input("The Flipper: If you have wasted your time here before, enter 1, else enter 2.")
 if hereBefore == "1":
     while answerGiven == 0:
@@ -36,7 +42,7 @@ print("The Flipper: Welcome to the Casino! Let's gamble on a coin toss!")
 while money > 0:
     stake = 0
     bet = ""
-    print(f"The Flipper: You currently have {money} money.")
+    print(f"The Flipper: You currently have {money} flipcoin.")
     print("The Flipper: Do you want to bet on heads, tails, or landing on its edge.")
     bet = input("The Flipper: Odds: Heads - x1.9 your stake, Tails - x1.9 your stake, Edge - x500 your stake (Enter Heads, Tails or Edge)")
     while 1 > 0:
@@ -58,6 +64,7 @@ while money > 0:
         else:
             winamount = int(stake*500)
             money += winamount
+            print("The Flipper: Impressive. You won while betting on edge. Very brave of you.")
         if winInARow > 0:
             winInARow += 1
         else:
@@ -65,7 +72,7 @@ while money > 0:
         print(f"The Flipper: Wow! You won {winamount} money! Care to play again?")
         response = input("The Flipper: Press 1 to play again, 2 to get your save code and 3 to leave.")
     else:
-        if winInARow < 0:
+        if winInARow < 0 and bet != "edge":
             winInARow -= 1
         else:
             winInARow = -1
@@ -106,6 +113,29 @@ while money > 0:
             print("*A curtain is drawn and st*bbing sounds are heard. When the curtain is pulled, the old man is nowhere to be seen.*")
             print("The Flipper: Good. Shall we continue?")
             oldManEncounters += 1
+        if winInARow == 5 and _5FlipDialogue == 0:
+            print("The Flipper: Someone's lucky today.")
+            _5FlipDialogue = 1
+        if winInARow == -5 and _5FlipDialogue2 == 0:
+            print("The Flipper: Someone's unlucky today.")
+            _5FlipDialogue2 = 1
+        if winInARow == 10 and _10FlipDialogue == 0:
+            print("The Flipper: Someone's extremely lucky toady.")
+            _10FlipDialogue = 1
+        if winInARow == 10 and _10FlipDialogue2 == 0:
+            print("The Flipper: Someone's extremely unlucky today.")
+            print(f"The Flipper: Here. A gift. 10% of your flipcoins.")
+            result = "flipcoins" if int(money*0.1) != 1 else result = "flipcoin"
+            print(f"The Flipper: Enjoy your {int(money*0.1)} {result}")
+            money = int(money*1.1)
+        if money >= 1000 and _10FlipDialogue2 == 1 and taxDialogue == 0:
+            print("The Flipper: Remember when I gave you some flipcoins?")
+            print("The Flipper: I'll need some back. 10% to be exact.")
+            money = int(money*0.9)
+            taxDialogue = 1
         
-
-print("The Flipper: Thanks for playing! See you again soon!")
+if money >= 0:
+    print("The Flipper: Thanks for playing! See you again soon!")
+else: 
+    print("The Flipper: What a dissapointing end...")
+    print("The Flipper: Thanks for your money.")
