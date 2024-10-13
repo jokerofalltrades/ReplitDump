@@ -137,5 +137,5 @@ while money > 0:
 if money >= 0:
     print("The Flipper: Thanks for playing! See you again soon!")
 else: 
-    print("The Flipper: What a dissapointing end...")
+    print("The Flipper: What a disappointing end...")
     print("The Flipper: Thanks for your money.")
