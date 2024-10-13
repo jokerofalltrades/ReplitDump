@@ -5,6 +5,11 @@ answerGiven = 0
 flips = 0
 oldManEncounters = 0
 oldManPower = 0
+winInARow = 0
+
+def saveCodeGenerator():
+    newSaveCode = f"ValidSave:Money:{money}Flips:{flips}OldMan:{oldManEncounters}OldManPow:{oldManPower}WinRow:{winInARow}".encode("utf-8").hex()
+    return newSaveCode
 
 print("The Flipper: Welcome to the world's best casino: We have one enthralling game here.")
 print("The Flipper: Our game is gambling on a coin flip. You start with 100 money.")
@@ -18,7 +23,9 @@ if hereBefore == "1":
         if saveCode.find("ValidSave:") != -1:
             money = int(saveCode[(saveCode.find("Money:")+6):(saveCode.find("Flips:"))])
             flips = int(saveCode[(saveCode.find("Flips:")+6):saveCode.find("OldMan:")])
-            oldManEncounters = int(saveCode[(saveCode.find("OldMan:")+7):len(saveCode)])
+            oldManEncounters = int(saveCode[(saveCode.find("OldMan:")+7):saveCode.find("OldManPow:")])
+            oldManPower = int(saveCode[(saveCode.find("OldManPow:")+10):saveCode.find("WinRow:")])
+            winInARow = int(saveCode[(saveCode.find("WinRow:")+7):len(saveCode)])
             answerGiven = 1
         elif saveCode == "":
             print("Mysterious Man: Continue on with my companion.")
@@ -32,8 +39,10 @@ while money > 0:
     print(f"The Flipper: You currently have {money} money.")
     print("The Flipper: Do you want to bet on heads, tails, or landing on its edge.")
     bet = input("The Flipper: Odds: Heads - x1.9 your stake, Tails - x1.9 your stake, Edge - x500 your stake (Enter Heads, Tails or Edge)")
-    while stake >= money or stake <= 0:
+    while 1 > 0:
         stake = int(input("How much do you want to bet?"))
+        if stake >= money or stake <= 0: break
+        print("That is an invalid stake.")
     bet = bet.lower()
     money -= stake
     flips += 1
@@ -49,22 +58,28 @@ while money > 0:
         else:
             winamount = int(stake*500)
             money += winamount
+        if winInARow > 0:
+            winInARow += 1
+        else:
+            winInARow = 1
         print(f"The Flipper: Wow! You won {winamount} money! Care to play again?")
         response = input("The Flipper: Press 1 to play again, 2 to get your save code and 3 to leave.")
     else:
+        if winInARow < 0:
+            winInARow -= 1
+        else:
+            winInARow = -1
         print(f"Oh dear... It was {result}, you lost. Care to play again?")
         response = input("The Flipper: Press 1 to play again, 2 to get your save code and 3 to leave.")
     if response == "3":
         response = input("The Flipper: Are you sure you want to leave? Press 1 to continue, 2 to get your save code and leave and 3 to just leave.")
         if response == "2":
-            newSaveCode = f"ValidSave:Money:{money}Flips:{flips}OldMan:{oldManEncounters}".encode("utf-8").hex()
-            print(f"Mysterious Man: {newSaveCode}")
+            print(f"Mysterious Man: {saveCodeGenerator()}")
             break
         elif response == "3":
             break
     if response == "2":
-        newSaveCode = f"ValidSave:Money:{money}Flips:{flips}OldMan:{oldManEncounters}".encode("utf-8").hex()
-        print(f"Mysterious Man: {newSaveCode}")
+        print(f"Mysterious Man: {saveCodeGenerator()}")
     if oldManPower > 0: oldManPower -= 1
     if random.randint(1,100) == 100:
         if oldManEncounters == 0:
@@ -84,5 +99,13 @@ while money > 0:
             print("Wise Old Man: Good Luck and bet on 6865616473 for the next 7468726565 goes.")
             oldManEncounters += 1
             oldManPower = 3
+        elif oldManEncounters == 3:
+            print("Old Man: Kid, I don't have lon-")
+            print("The Flipper: Enough of this.")
+            print("The Flipper: This knife'll do the trick...")
+            print("*A curtain is drawn and st*bbing sounds are heard. When the curtain is pulled, the old man is nowhere to be seen.*")
+            print("The Flipper: Good. Shall we continue?")
+            oldManEncounters += 1
+        
 
 print("The Flipper: Thanks for playing! See you again soon!")
