@@ -47,7 +47,7 @@ while money > 0:
     bet = input("The Flipper: Odds: Heads - x1.9 your stake, Tails - x1.9 your stake, Edge - x500 your stake (Enter Heads, Tails or Edge)")
     while 1 > 0:
         stake = int(input("How much do you want to bet?"))
-        if stake >= money or stake <= 0: break
+        if stake <= money or stake >= 0: break
         print("That is an invalid stake.")
     bet = bet.lower()
     money -= stake
@@ -69,7 +69,7 @@ while money > 0:
             winInARow += 1
         else:
             winInARow = 1
-        print(f"The Flipper: Wow! You won {winamount} money! Care to play again?")
+        print(f"The Flipper: Wow! You won {winamount} flipcoin! Care to play again?")
         response = input("The Flipper: Press 1 to play again, 2 to get your save code and 3 to leave.")
     else:
         if winInARow < 0 and bet != "edge":
@@ -125,7 +125,7 @@ while money > 0:
         if winInARow == 10 and _10FlipDialogue2 == 0:
             print("The Flipper: Someone's extremely unlucky today.")
             print(f"The Flipper: Here. A gift. 10% of your flipcoins.")
-            result = "flipcoins" if int(money*0.1) != 1 else result = "flipcoin"
+            result = int(money * 0.1) != 1 and "flipcoins" or "flipcoin"
             print(f"The Flipper: Enjoy your {int(money*0.1)} {result}")
             money = int(money*1.1)
         if money >= 1000 and _10FlipDialogue2 == 1 and taxDialogue == 0:
