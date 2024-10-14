@@ -59,10 +59,10 @@ while money > 0:
     if coinFlipDecider >= 5000 and coinFlipDecider <= 5001: result = "edge"
     if result == bet:
         if bet != "edge":
-            winamount = int(stake*1.9)
+            winamount = round(stake*1.9)
             money += winamount
         else:
-            winamount = int(stake*500)
+            winamount = round(stake*500)
             money += winamount
             print("The Flipper: Impressive. You won while betting on edge. Very brave of you.")
         if winInARow > 0:
@@ -88,7 +88,7 @@ while money > 0:
     if response == "2":
         print(f"Mysterious Man: {saveCodeGenerator()}")
     if oldManPower > 0: oldManPower -= 1
-    if random.randint(1,100) == 100:
+    if random.randint(1,50) == 50:
         if oldManEncounters == 0:
             print("???: Psst... Hey Kid!")
             print("Wise Old Man: Kid, don't bet on edge, the odds are 1 in 5000!")
@@ -131,7 +131,7 @@ while money > 0:
         if money >= 1000 and _10FlipDialogue2 == 1 and taxDialogue == 0:
             print("The Flipper: Remember when I gave you some flipcoins?")
             print("The Flipper: I'll need some back. 10% to be exact.")
-            money = int(money*0.9)
+            money = round(money*0.9)
             taxDialogue = 1
         
 if money >= 0:
