@@ -47,7 +47,7 @@ while money > 0:
     bet = input("The Flipper: Odds: Heads - x1.9 your stake, Tails - x1.9 your stake, Edge - x500 your stake (Enter Heads, Tails or Edge)")
     while 1 > 0:
         stake = int(input("How much do you want to bet?"))
-        if stake <= money or stake >= 0: break
+        if stake <= money and stake >= 0: break
         print("That is an invalid stake.")
     bet = bet.lower()
     money -= stake
@@ -137,5 +137,5 @@ while money > 0:
 if money >= 0:
     print("The Flipper: Thanks for playing! See you again soon!")
 else: 
-    print("The Flipper: What a dissapointing end...")
+    print("The Flipper: What a disappointing end...")
     print("The Flipper: Thanks for your money.")
