@@ -1,4 +1,5 @@
 import random
+import time
 
 money = 100
 answerGiven = 0
@@ -87,6 +88,7 @@ while money > 0:
             break
     if response == "2":
         print(f"Mysterious Man: {saveCodeGenerator()}")
+    time.sleep(0.2)
     if oldManPower > 0: oldManPower -= 1
     if random.randint(1,50) == 50:
         if oldManEncounters == 0:
@@ -113,26 +115,27 @@ while money > 0:
             print("*A curtain is drawn and st*bbing sounds are heard. When the curtain is pulled, the old man is nowhere to be seen.*")
             print("The Flipper: Good. Shall we continue?")
             oldManEncounters += 1
-        if winInARow == 5 and _5FlipDialogue == 0:
-            print("The Flipper: Someone's lucky today.")
-            _5FlipDialogue = 1
-        if winInARow == -5 and _5FlipDialogue2 == 0:
-            print("The Flipper: Someone's unlucky today.")
-            _5FlipDialogue2 = 1
-        if winInARow == 10 and _10FlipDialogue == 0:
-            print("The Flipper: Someone's extremely lucky toady.")
-            _10FlipDialogue = 1
-        if winInARow == 10 and _10FlipDialogue2 == 0:
-            print("The Flipper: Someone's extremely unlucky today.")
-            print(f"The Flipper: Here. A gift. 10% of your flipcoins.")
-            result = int(money * 0.1) != 1 and "flipcoins" or "flipcoin"
-            print(f"The Flipper: Enjoy your {int(money*0.1)} {result}")
-            money = int(money*1.1)
-        if money >= 1000 and _10FlipDialogue2 == 1 and taxDialogue == 0:
-            print("The Flipper: Remember when I gave you some flipcoins?")
-            print("The Flipper: I'll need some back. 10% to be exact.")
-            money = round(money*0.9)
-            taxDialogue = 1
+    if winInARow == 5 and _5FlipDialogue == 0:
+        print("The Flipper: Someone's lucky today.")
+        _5FlipDialogue = 1
+    if winInARow == -5 and _5FlipDialogue2 == 0:
+        print("The Flipper: Someone's unlucky today.")
+        _5FlipDialogue2 = 1
+    if winInARow == 10 and _10FlipDialogue == 0:
+        print("The Flipper: Someone's extremely lucky toady.")
+        _10FlipDialogue = 1
+    if winInARow == 10 and _10FlipDialogue2 == 0:
+        print("The Flipper: Someone's extremely unlucky today.")
+        print(f"The Flipper: Here. A gift. 10% of your flipcoins.")
+        result = int(money * 0.1) != 1 and "flipcoins" or "flipcoin"
+        print(f"The Flipper: Enjoy your {int(money*0.1)} {result}")
+        money = int(money*1.1)
+    if money >= 1000 and _10FlipDialogue2 == 1 and taxDialogue == 0:
+        print("The Flipper: Remember when I gave you some flipcoins?")
+        print("The Flipper: I'll need some back. 10% to be exact.")
+        money = round(money*0.9)
+        taxDialogue = 1
+    time.sleep(0.2)
         
 if money >= 0:
     print("The Flipper: Thanks for playing! See you again soon!")
