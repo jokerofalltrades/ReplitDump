@@ -14,11 +14,18 @@ _10FlipDialogue = 0
 _10FlipDialogue2 = 0
 taxDialogue = 0
 trinkets = []
-
+trinketSave = ""
 
 def saveCodeGenerator():
-    newSaveCode = f"ValidSave:Money:{money}Flips:{flips}OldMan:{oldManEncounters}OldManPow:{oldManPower}WinRow:{winInARow}".encode("utf-8").hex()
+    for item in trinkets:
+        trinketSave += item
+    newSaveCode = f"ValidSave:Money:{money}Flips:{flips}OldMan:{oldManEncounters}OldManPow:{oldManPower}WinRow:{winInARow}Trinkets:{trinketSave}".encode("utf-8").hex()
     return newSaveCode
+
+def restructureTrinkets(savedTrinkets):
+    for i in range(len(savedTrinkets)):
+        trinkets += savedTrinkets[i]
+
 
 print("The Flipper: Welcome to the world's best casino: We have one enthralling game here.")
 print("The Flipper: Our game is gambling on a coin flip. You start with 100 flipcoin.")
@@ -34,11 +41,13 @@ if hereBefore == "1":
             flips = int(saveCode[(saveCode.find("Flips:")+6):saveCode.find("OldMan:")])
             oldManEncounters = int(saveCode[(saveCode.find("OldMan:")+7):saveCode.find("OldManPow:")])
             oldManPower = int(saveCode[(saveCode.find("OldManPow:")+10):saveCode.find("WinRow:")])
-            winInARow = int(saveCode[(saveCode.find("WinRow:")+7):len(saveCode)])
+            winInARow = int(saveCode[(saveCode.find("WinRow:")+7):saveCode.find("Trinkets:")])
+            trinketSave = str(saveCode[(saveCode.find("Trinkets:")+9):len(saveCode)])
             answerGiven = 1
             if math.log2(money) > flips:
                 print("Mysterious Man: That is an illegal code.")
                 answerGiven = 0
+            restructureTrinkets(trinketSave)
         elif saveCode == "":
             print("Mysterious Man: Continue on with my companion.")
             answerGiven = 1          
@@ -140,7 +149,7 @@ while money > 0:
         print("The Flipper: I'll need some back. 10% to be exact.")
         money = round(money*0.9)
         taxDialogue = 1
-    if flips == 20:
+    if flips == 20 and "1" not in trinkets:
         print("The Flipper: Here. A trinket of thanks.")
         print("The Flipper: Enjoy my spider eye.")
         print("The Flipper: Keep it safe.")
