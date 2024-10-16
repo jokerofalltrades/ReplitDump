@@ -13,6 +13,7 @@ _5FlipDialogue2 = 0
 _10FlipDialogue = 0
 _10FlipDialogue2 = 0
 taxDialogue = 0
+trinkets = []
 
 
 def saveCodeGenerator():
@@ -139,6 +140,11 @@ while money > 0:
         print("The Flipper: I'll need some back. 10% to be exact.")
         money = round(money*0.9)
         taxDialogue = 1
+    if flips == 20:
+        print("The Flipper: Here. A trinket of thanks.")
+        print("The Flipper: Enjoy my spider eye.")
+        print("The Flipper: Keep it safe.")
+        trinkets += "1"
     #Add more dialogue
     time.sleep(0.2)
         
