@@ -1,5 +1,6 @@
 import random
 import time
+import math
 
 money = 100
 answerGiven = 0
@@ -34,6 +35,9 @@ if hereBefore == "1":
             oldManPower = int(saveCode[(saveCode.find("OldManPow:")+10):saveCode.find("WinRow:")])
             winInARow = int(saveCode[(saveCode.find("WinRow:")+7):len(saveCode)])
             answerGiven = 1
+            if math.log2(money) > flips:
+                print("Mysterious Man: That is an illegal code.")
+                answerGiven = 0
         elif saveCode == "":
             print("Mysterious Man: Continue on with my companion.")
             answerGiven = 1          
@@ -135,6 +139,7 @@ while money > 0:
         print("The Flipper: I'll need some back. 10% to be exact.")
         money = round(money*0.9)
         taxDialogue = 1
+    #Add more dialogue
     time.sleep(0.2)
         
 if money >= 0:
