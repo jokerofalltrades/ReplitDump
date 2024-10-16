@@ -128,11 +128,11 @@ while money > 0:
     if winInARow == 10 and _10FlipDialogue == 0:
         print("The Flipper: Someone's extremely lucky toady.")
         _10FlipDialogue = 1
-    if winInARow == 10 and _10FlipDialogue2 == 0:
+    if winInARow == -10 and _10FlipDialogue2 == 0:
         print("The Flipper: Someone's extremely unlucky today.")
         print(f"The Flipper: Here. A gift. 10% of your flipcoins.")
         result = int(money * 0.1) != 1 and "flipcoins" or "flipcoin"
-        print(f"The Flipper: Enjoy your {int(money*0.1)} {result}")
+        print(f"The Flipper: Enjoy your {int(money*0.1)} {result}.")
         money = int(money*1.1)
     if money >= 1000 and _10FlipDialogue2 == 1 and taxDialogue == 0:
         print("The Flipper: Remember when I gave you some flipcoins?")
