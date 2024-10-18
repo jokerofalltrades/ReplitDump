@@ -15,7 +15,6 @@ _10FlipDialogue2 = 0
 taxDialogue = 0
 trinkets = ["","","","","","","","","",""]
 trinketSave = ""
-trinketReq = ["20","","","","","500","","","",""]
 
 def saveCodeGenerator():
     for item in trinkets:
@@ -62,7 +61,7 @@ while money > 0:
     print("The Flipper: Do you want to bet on heads, tails, or landing on its edge.")
     bet = input("The Flipper: Odds: Heads - x1.9 your stake, Tails - x1.9 your stake, Edge - x500 your stake (Enter Heads, Tails or Edge)")
     while 1 > 0:
-        stake = int(input("How much do you want to bet?"))
+        stake = int(input("How much do you want to bet? "))
         if stake <= money and stake >= 0: break
         print("That is an invalid stake.")
     bet = bet.lower()
