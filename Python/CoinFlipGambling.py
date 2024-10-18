@@ -13,8 +13,9 @@ _5FlipDialogue2 = 0
 _10FlipDialogue = 0
 _10FlipDialogue2 = 0
 taxDialogue = 0
-trinkets = []
+trinkets = ["","","","","","","","","",""]
 trinketSave = ""
+trinketReq = ["20","","","","","500","","","",""]
 
 def saveCodeGenerator():
     for item in trinkets:
@@ -153,7 +154,25 @@ while money > 0:
         print("The Flipper: Here. A trinket of thanks.")
         print("The Flipper: Enjoy my spider eye.")
         print("The Flipper: Keep it safe.")
-        trinkets += "1"
+        trinkets[0] = "1"
+    if flips == 50 and "2" not in trinkets:
+        print("The Flipper: Huh. You seem to really like playing.")
+        print("The Flipper: Well... seen as you're still here...")
+        print("The Flipper: Have this 'Keep on Flipping' poster.")
+        trinkets[1] = "2"
+    if flips == 100 and "3" not in trinkets:
+        print("The Flipper: You seem to like hanging around here.")
+        print("The Flipper: A puzzle, to pass the time...")
+        print("The Flipper: You can have a Rubik's Cube keychain.")
+        trinkets[2] = "3"
+    if flips == 250 and "4" not in trinkets:
+        
+        trinkets[3] = "4"
+    if flips >= 500 and oldManEncounters == 4 and "6" not in trinkets:
+        print("The Flipper: You seem to really miss that old man...")
+        print("The Flipper: Here. A memory of him. His skeleton.")
+        print("The Flipper: He would have wanted you to have had it anyway.")
+        trinkets[5] = "6"
     #Add more dialogue
     time.sleep(0.2)
         
