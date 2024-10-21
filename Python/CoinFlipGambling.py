@@ -16,9 +16,9 @@ taxDialogue = 0
 trinkets = ["","","","","","","","","",""]
 trinketSave = ""
 
-def saveCodeGenerator():
+def saveCodeGenerator(trinketSave,trinkets):
     for item in trinkets:
-        trinketSave += item
+        trinketSave += str(item)
     newSaveCode = f"ValidSave:Money:{money}Flips:{flips}OldMan:{oldManEncounters}OldManPow:{oldManPower}WinRow:{winInARow}Trinkets:{trinketSave}".encode("utf-8").hex()
     return newSaveCode
 
@@ -77,8 +77,9 @@ while money > 0:
             stake = 0
         else:
             if stake <= money and stake >= 0: break
+            pause()
+            print("That is an invalid stake.")
         pause()
-        print("That is an invalid stake.")
     bet = bet.lower()
     money -= stake
     flips += 1
@@ -115,12 +116,12 @@ while money > 0:
     if response == "3":
         response = input("The Flipper: Are you sure you want to leave? Press 1 to continue, 2 to get your save code and leave and 3 to just leave. ")
         if response == "2":
-            print(f"Mysterious Man: {saveCodeGenerator()}")
+            print(f"Mysterious Man: {saveCodeGenerator(trinketSave,trinkets)}")
             break
         elif response == "3":
             break
     if response == "2":
-        print(f"Mysterious Man: {saveCodeGenerator()}")
+        print(f"Mysterious Man: {saveCodeGenerator(trinketSave,trinkets)}")
     pause()
     if oldManPower > 0: oldManPower -= 1
     if random.randint(1,50) == 50:
