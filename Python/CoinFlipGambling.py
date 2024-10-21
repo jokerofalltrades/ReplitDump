@@ -27,18 +27,18 @@ def restructureTrinkets(savedTrinkets):
         trinkets += savedTrinkets[i]
     
 def pause():
-    time.sleep(0.2)
+    time.sleep(0.25)
 
 
 print("The Flipper: Welcome to the world's best casino: We have one enthralling game here.")
 pause()
 print("The Flipper: Our game is gambling on a coin flip. You start with 100 flipcoin.")
 pause()
-hereBefore = input("The Flipper: If you have wasted your time here before, enter 1, else enter 2.")
+hereBefore = input("The Flipper: If you have wasted your time here before, enter 1, else enter 2. ")
 if hereBefore == "1":
     while answerGiven == 0:
         print("Mysterious Man: Welcome to my Save Cove.")
-        hexSaveCode = input("Mysterious Man: If you do not have a save press enter. Else please enter your save code:")
+        hexSaveCode = input("Mysterious Man: If you do not have a save press enter. Else please enter your save code: ")
         bytes_obj = bytes.fromhex(hexSaveCode)
         saveCode = bytes_obj.decode('utf-8')
         if saveCode.find("ValidSave:") != -1:
@@ -66,11 +66,17 @@ while money > 0:
     print(f"The Flipper: You currently have {money} flipcoin.")
     pause()
     print("The Flipper: Do you want to bet on heads, tails, or landing on its edge?")
-    bet = input("The Flipper: Odds: Heads - x1.9 your stake, Tails - x1.9 your stake, Edge - x500 your stake (Enter Heads, Tails or Edge)")
+    bet = input("The Flipper: Odds: Heads - x1.9 your stake, Tails - x1.9 your stake, Edge - x500 your stake (Enter Heads, Tails or Edge) ")
     pause()
     while 1 > 0:
-        stake = int(input("How much do you want to bet? "))
-        if stake <= money and stake >= 0: break
+        stake = input("How much do you want to bet? ")
+        try:
+            stake = int(stake)
+        except:
+            print("Please enter a valid input.")
+            stake = 0
+        else:
+            if stake <= money and stake >= 0: break
         pause()
         print("That is an invalid stake.")
     bet = bet.lower()
@@ -96,7 +102,7 @@ while money > 0:
             winInARow = 1
         print(f"The Flipper: Wow! You won {winamount} flipcoin! Care to play again?")
         pause()
-        response = input("The Flipper: Press 1 to play again, 2 to get your save code and 3 to leave.")
+        response = input("The Flipper: Press 1 to play again, 2 to get your save code and 3 to leave. ")
     else:
         if winInARow < 0 and bet != "edge":
             winInARow -= 1
@@ -104,10 +110,10 @@ while money > 0:
             winInARow = -1
         print(f"Oh dear... It was {result}, you lost. Care to play again?")
         pause()
-        response = input("The Flipper: Press 1 to play again, 2 to get your save code and 3 to leave.")
+        response = input("The Flipper: Press 1 to play again, 2 to get your save code and 3 to leave. ")
         pause()
     if response == "3":
-        response = input("The Flipper: Are you sure you want to leave? Press 1 to continue, 2 to get your save code and leave and 3 to just leave.")
+        response = input("The Flipper: Are you sure you want to leave? Press 1 to continue, 2 to get your save code and leave and 3 to just leave. ")
         if response == "2":
             print(f"Mysterious Man: {saveCodeGenerator()}")
             break
