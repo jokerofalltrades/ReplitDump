@@ -15,6 +15,7 @@ _10FlipDialogue2 = 0
 taxDialogue = 0
 trinkets = ["","","","","","","","","",""]
 trinketSave = ""
+trinket4flips = 0
 
 def saveCodeGenerator(trinketSave,trinkets):
     for item in trinkets:
@@ -26,8 +27,8 @@ def restructureTrinkets(savedTrinkets):
     for i in range(len(savedTrinkets)):
         trinkets += savedTrinkets[i]
     
-def pause():
-    time.sleep(0.25)
+def pause(timemodifier=1):
+    time.sleep(0.25*timemodifier)
 
 
 print("The Flipper: Welcome to the world's best casino: We have one enthralling game here.")
@@ -114,7 +115,7 @@ while money > 0:
         response = input("The Flipper: Press 1 to play again, 2 to get your save code and 3 to leave. ")
         pause()
     if response == "3":
-        response = input("The Flipper: Are you sure you want to leave? Press 1 to continue, 2 to get your save code and leave and 3 to just leave. ")
+        response = input("The Flipper: Are you sure you want to leave? Press 1 to return to the game, 2 to get your save code and leave and 3 to just leave. ")
         if response == "2":
             print(f"Mysterious Man: {saveCodeGenerator(trinketSave,trinkets)}")
             break
@@ -127,36 +128,36 @@ while money > 0:
     if random.randint(1,50) == 50:
         if oldManEncounters == 0:
             print("???: Psst... Hey Kid!")
-            pause()
+            pause(4)
             print("Wise Old Man: Kid, don't bet on edge, the odds are 1 in 5000!")
-            pause()
+            pause(4)
             print("Wise Old Man: These yung'uns could really use some help...")
             oldManEncounters += 1
         elif oldManEncounters == 1:
             print("Wise Old Man: Bet heads next time.")
-            pause()
+            pause(4)
             print("Wise Old Man: I promise you will win.")
-            pause()
+            pause(4)
             print("Wise Old Man: Give it everything you have.")
             oldManPower = 1
             oldManEncounters += 1
         elif oldManEncounters == 2:
             print("Wise Old Man: The Flipper is trying to 73696C656E6365 me.")
-            pause()
+            pause(4)
             print("Wise Old Man: I don't have long before I'm 676F6E650A.")
-            pause()
+            pause(4)
             print("Wise Old Man: Good Luck and bet on 6865616473 for the next 7468726565 goes.")
             oldManEncounters += 1
             oldManPower = 3
         elif oldManEncounters == 3:
             print("Old Man: Kid, I don't have lon-")
-            pause()
+            pause(4)
             print("The Flipper: Enough of this.")
-            pause()
+            pause(4)
             print("The Flipper: This knife'll do the trick...")
-            pause()
+            pause(4)
             print("*A curtain is drawn and st*bbing sounds are heard. When the curtain is pulled, the old man is nowhere to be seen.*")
-            pause()
+            pause(4)
             print("The Flipper: Good. Shall we continue?")
             oldManEncounters += 1
     if winInARow == 5 and _5FlipDialogue == 0:
@@ -204,7 +205,12 @@ while money > 0:
         print("The Flipper: You can have a Rubik's Cube keychain.")
         trinkets[2] = "3"
     if flips == 250 and "4" not in trinkets:
-        
+        print("The Flipper: You really are dedicated to this...")
+        pause()
+        print("The Flipper: So I may as well award you.")
+        pause()
+        print("The Flipper: You can have my half-eaten waffle.")
+        trinket4flips = flips
         trinkets[3] = "4"
     if flips >= 500 and oldManEncounters == 4 and "6" not in trinkets:
         print("The Flipper: You seem to really miss that old man...")
