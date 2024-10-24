@@ -16,6 +16,7 @@ taxDialogue = 0
 trinkets = ["","","","","","","","","",""]
 trinketSave = ""
 trinket4flips = 0
+killScene = 0
 
 def saveCodeGenerator(trinketSave,trinkets):
     for item in trinkets:
@@ -120,6 +121,7 @@ while money > 0:
             print(f"Mysterious Man: {saveCodeGenerator(trinketSave,trinkets)}")
             break
         elif response == "3":
+            killScene = 1
             break
     if response == "2":
         print(f"Mysterious Man: {saveCodeGenerator(trinketSave,trinkets)}")
@@ -221,8 +223,18 @@ while money > 0:
         trinkets[5] = "6"
     #Add more dialogue
     pause()
-        
-if money > 0:
+
+if killScene == 1 and money > 100:
+    print("*As you begin to walk away you hear The Flipper bark orders at his servant.*")
+    pause(4)
+    print("Servant: Must I?")
+    pause(4)
+    print("*Suddenly you feel a sharp pain in the back of your head and you fall to the floor.*")
+    pause(4)
+    print("The Flipper: The house. Always. WINS.")
+    pause(4)
+    print("*As you feel yourself slipping away, The Flipper approaches and takes all your flipcoin, all the while with a manic smile.*")        
+elif money > 0:
     print("The Flipper: Thanks for playing! See you again soon!")
 else: 
     print("The Flipper: What a disappointing end...")
