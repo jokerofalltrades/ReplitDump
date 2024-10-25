@@ -15,7 +15,6 @@ _10FlipDialogue2 = 0
 taxDialogue = 0
 trinkets = ["","","","","","","","","",""]
 trinketSave = ""
-trinket4flips = 0
 killScene = 0
 
 def saveCodeGenerator(trinketSave,trinkets):
@@ -31,12 +30,27 @@ def restructureTrinkets(savedTrinkets):
 def pause(timemodifier=1):
     time.sleep(0.25*timemodifier)
 
+def viewTrinkets(trinkets,flips):
+    if "1" in trinkets: result1 = "Spider's Eye"
+    else: result1 = "???"
+    if "2" in trinkets: result2 = "'Keep on Flipping' Poster"
+    else: result2 = "???"
+    if "3" in trinkets: result3 = "Rubik's Cube Keychain"
+    else: result3 = "???"
+    if "4" in trinkets and flips <= 300: result4 = "Half-Eaten Waffle"
+    elif "4" in trinkets and flips > 300: result4 = "Moldy Half-Eaten Waffle"
+    else: result4 = "???"
+    if "5" in trinkets: result5 = "placeholder"
+    else: result5 = "???"
+        
+
 
 print("The Flipper: Welcome to the world's best casino: We have one enthralling game here.")
 pause()
 print("The Flipper: Our game is gambling on a coin flip. You start with 100 flipcoin.")
 pause()
 hereBefore = input("The Flipper: If you have wasted your time here before, enter 1, else enter 2. ")
+#savecode code
 if hereBefore == "1":
     while answerGiven == 0:
         print("Mysterious Man: Welcome to my Save Cove.")
@@ -70,6 +84,7 @@ while money > 0:
     print("The Flipper: Do you want to bet on heads, tails, or landing on its edge?")
     bet = input("The Flipper: Odds: Heads - x1.9 your stake, Tails - x1.9 your stake, Edge - x500 your stake (Enter Heads, Tails or Edge) ")
     pause()
+    #check for valid stake
     while 1 > 0:
         stake = input("How much do you want to bet? ")
         try:
@@ -85,6 +100,7 @@ while money > 0:
     bet = bet.lower()
     money -= stake
     flips += 1
+    #decides coin flip
     coinFlipDecider = random.randint(1,10000)
     if oldManPower > 0: coinFlipDecider = 1
     if coinFlipDecider <= 4999: result = "heads"
@@ -126,6 +142,7 @@ while money > 0:
     if response == "2":
         print(f"Mysterious Man: {saveCodeGenerator(trinketSave,trinkets)}")
     pause()
+    #old man stuff
     if oldManPower > 0: oldManPower -= 1
     if random.randint(1,50) == 50:
         if oldManEncounters == 0:
@@ -162,6 +179,7 @@ while money > 0:
             pause(4)
             print("The Flipper: Good. Shall we continue?")
             oldManEncounters += 1
+    #random dialogue bits
     if winInARow == 5 and _5FlipDialogue == 0:
         print("The Flipper: Someone's lucky today.")
         _5FlipDialogue = 1
@@ -185,6 +203,7 @@ while money > 0:
         print("The Flipper: I'll need some back. 10% to be exact.")
         money = round(money*0.9)
         taxDialogue = 1
+    #trinkets
     if flips == 20 and "1" not in trinkets:
         print("The Flipper: Here. A trinket of thanks.")
         pause()
@@ -212,7 +231,6 @@ while money > 0:
         print("The Flipper: So I may as well award you.")
         pause()
         print("The Flipper: You can have my half-eaten waffle.")
-        trinket4flips = flips
         trinkets[3] = "4"
     if flips >= 500 and oldManEncounters == 4 and "6" not in trinkets:
         print("The Flipper: You seem to really miss that old man...")
