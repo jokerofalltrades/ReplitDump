@@ -31,18 +31,49 @@ def pause(timemodifier=1):
     time.sleep(0.25*timemodifier)
 
 def viewTrinkets(trinkets,flips):
-    if "1" in trinkets: result1 = "Spider's Eye"
-    else: result1 = "???"
-    if "2" in trinkets: result2 = "'Keep on Flipping' Poster"
-    else: result2 = "???"
-    if "3" in trinkets: result3 = "Rubik's Cube Keychain"
-    else: result3 = "???"
-    if "4" in trinkets and flips <= 300: result4 = "Half-Eaten Waffle"
-    elif "4" in trinkets and flips > 300: result4 = "Moldy Half-Eaten Waffle"
-    else: result4 = "???"
-    if "5" in trinkets: result5 = "placeholder"
-    else: result5 = "???"
-        
+    items = []
+    response2 = False
+    if "1" in trinkets: result += "Spider's Eye"
+    else: items += "???"
+    if "2" in trinkets: items += "'Keep on Flipping' Poster"
+    else: items += "???"
+    if "3" in trinkets: items += "Rubik's Cube Keychain"
+    else: items += "???"
+    if "4" in trinkets and flips <= 300: items += "Half-Eaten Waffle"
+    elif "4" in trinkets and flips > 300: items += "Moldy Half-Eaten Waffle"
+    else: items += "???"
+    if "5" in trinkets: items += "placeholder"
+    else: items += "???"
+    if "6" in trinkets: items += "Old Man's Skeleton"
+    else: items += "???"
+    if "7" in trinkets: items += "placeholder"
+    else: items += "???"
+    if "8" in trinkets: items += "placeholder"
+    else: items += "???"
+    if "9" in trinkets: items += "placeholder"
+    else: items += "???"
+    if "10" in trinkets: items += "placeholder"
+    else: items += "???"
+    while response2 == False:
+        print("The Flipper: Not this troublesome pack again...")
+        pause()
+        print("Packsy: Hey there traveller!")
+        pause()
+        print("Packsy: You wish to know more about your trinkets... Sure!")
+        print(f"Packsy: Here are your trinkets:\n1: {items[0]}\n2: {items[1]}\n3: {items[2]}\n4: {items[3]}\n5: {items[4]}\n6: {items[5]}\n7: {items[6]}\n8: {items[7]}\n9: {items[8]}\n10:{items[9]}")
+        response = input("Packsy: Would you like to view additional information about one of these? If so type their number, else press enter. ")
+        if response == "":
+            return
+        if response == "1" and items[0] != "???":
+            print("Packsy: So, you wish to know more about the spider's eye?")
+            pause()
+            print("Packsy: Let me read you an exercpt from its description...")
+            pause()
+            print("Packsy: 'The spider eye is an eye from a spider. It gleams and glistens with a deep red colour in the light. Utterly Disgusting.'")
+            pause(12)
+            tempresponse = input("Packsy: Inspiring, isn't it! Press enter to continue, or type 1 to find out about another trinket.")
+        if tempresponse == "":
+                return
 
 
 print("The Flipper: Welcome to the world's best casino: We have one enthralling game here.")
