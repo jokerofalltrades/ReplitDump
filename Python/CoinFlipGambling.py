@@ -32,7 +32,8 @@ def pause(timemodifier=1):
 
 def viewTrinkets(trinkets,flips):
     items = []
-    response2 = False
+    rubiksdialogue = 0
+    rubikssolved = 0
     if "1" in trinkets: result += "Spider's Eye"
     else: items += "???"
     if "2" in trinkets: items += "'Keep on Flipping' Poster"
@@ -54,7 +55,7 @@ def viewTrinkets(trinkets,flips):
     else: items += "???"
     if "10" in trinkets: items += "placeholder"
     else: items += "???"
-    while response2 == False:
+    while 1>0:
         print("The Flipper: Not this troublesome pack again...")
         pause()
         print("Packsy: Hey there traveller!")
@@ -71,9 +72,38 @@ def viewTrinkets(trinkets,flips):
             pause()
             print("Packsy: 'The spider eye is an eye from a spider. It gleams and glistens with a deep red colour in the light. Utterly Disgusting.'")
             pause(12)
-            tempresponse = input("Packsy: Inspiring, isn't it! Press enter to continue, or type 1 to find out about another trinket.")
+            tempresponse = input("Packsy: Inspiring, isn't it! Press enter to continue playing, or type 1 to find out about another trinket.")
+        elif response == "2" and items[1] != "???":
+            print("Packsy: So, you wish to find out about the Poster?")
+            pause()
+            print("Packsy: Let me read you an exercpt from its description...")
+            pause()
+            print("Packsy: 'This poster inspires any and all gamblers to Keep on Flipping.'")
+            pause(12)
+            tempresponse = input("Packsy: Inspiring, isn't it! Press enter to continue playing, or type 1 to find out about another trinket.")
+        elif response == "3" and items[2] != "???":
+            print("Packsy: So, you wish to find out about the Rubik's Cube Keychain?")
+            pause()
+            print("Packsy: Let me read you an exercpt from its description...")
+            pause()
+            print("Packsy: 'Puzzling, isn't it. This cube has stumped many countless minds for decades. The one who solves it must be a nerd.'")
+            pause(12)
+            if rubiksdialogue == 0:
+                rubiksdialogue = 1
+                print("Packsy: Inspiring, isn't it! Press enter to continue playing, or type 1 to find out about another trinket.")
+                pause(2)
+                print("Packsy: Wait? Another Dialogue Option!")
+                pause()
+            tempresponse = input("Packsy: Press enter to continue playing, or type 1 to find out about another trinket, or 2 for a mystery dialogue option")
         if tempresponse == "":
                 return
+        if tempresponse == "2":
+            if rubikssolved == 0:
+                rubikssolved = 1
+                print("Packsy: You want to solve it? Here!")
+                pause(12)
+                print("Packsy: Oh n- Wai- What? You solved it?")
+                pause()
 
 
 print("The Flipper: Welcome to the world's best casino: We have one enthralling game here.")
