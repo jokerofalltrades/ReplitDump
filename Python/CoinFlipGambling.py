@@ -16,11 +16,12 @@ taxDialogue = 0
 trinkets = ["","","","","","","","","",""]
 trinketSave = ""
 killScene = 0
+rubikssolved = 0
 
 def saveCodeGenerator(trinketSave,trinkets):
     for item in trinkets:
         trinketSave += str(item)
-    newSaveCode = f"ValidSave:Money:{money}Flips:{flips}OldMan:{oldManEncounters}OldManPow:{oldManPower}WinRow:{winInARow}Trinkets:{trinketSave}".encode("utf-8").hex()
+    newSaveCode = f"ValidSave:Money:{money}Flips:{flips}OldMan:{oldManEncounters}OldManPow:{oldManPower}WinRow:{winInARow}Trinkets:{trinketSave}CubeSolve:{rubikssolved}".encode("utf-8").hex()
     return newSaveCode
 
 def restructureTrinkets(savedTrinkets):
@@ -33,7 +34,6 @@ def pause(timemodifier=1):
 def viewTrinkets(trinkets,flips):
     items = []
     rubiksdialogue = 0
-    rubikssolved = 0
     if "1" in trinkets: result += "Spider's Eye"
     else: items += "???"
     if "2" in trinkets: items += "'Keep on Flipping' Poster"
@@ -104,6 +104,10 @@ def viewTrinkets(trinkets,flips):
                 pause(12)
                 print("Packsy: Oh n- Wai- What? You solved it?")
                 pause()
+                print("Packsy: Here, have 50 flipcoin!")
+                money += 50
+            else:
+                print("Packsy: You already solved the cube, silly!")
 
 
 print("The Flipper: Welcome to the world's best casino: We have one enthralling game here.")
@@ -124,7 +128,8 @@ if hereBefore == "1":
             oldManEncounters = int(saveCode[(saveCode.find("OldMan:")+7):saveCode.find("OldManPow:")])
             oldManPower = int(saveCode[(saveCode.find("OldManPow:")+10):saveCode.find("WinRow:")])
             winInARow = int(saveCode[(saveCode.find("WinRow:")+7):saveCode.find("Trinkets:")])
-            trinketSave = str(saveCode[(saveCode.find("Trinkets:")+9):len(saveCode)])
+            trinketSave = str(saveCode[(saveCode.find("Trinkets:")+9):saveCode.find("CubeSolved:")])
+            rubikssolved = saveCode[(saveCode.find("CubeSolved:")+11):len(saveCode)]
             answerGiven = 1
             if math.log2(money) > flips:
                 print("Mysterious Man: That is an illegal code.")
