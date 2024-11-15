@@ -24,7 +24,7 @@ def saveCodeGenerator(trinketSave,trinkets):
     newSaveCode = f"ValidSave:Money:{money}Flips:{flips}OldMan:{oldManEncounters}OldManPow:{oldManPower}WinRow:{winInARow}Trinkets:{trinketSave}CubeSolve:{rubikssolved}".encode("utf-8").hex()
     return newSaveCode
 
-def restructureTrinkets(savedTrinkets):
+def restructureTrinkets(savedTrinkets, trinkets):
     for i in range(len(savedTrinkets)):
         trinkets += savedTrinkets[i]
     
@@ -34,7 +34,7 @@ def pause(timemodifier=1):
 def viewTrinkets(trinkets,flips):
     items = []
     rubiksdialogue = 0
-    if "1" in trinkets: result += "Spider's Eye"
+    if "1" in trinkets: items += "Spider's Eye"
     else: items += "???"
     if "2" in trinkets: items += "'Keep on Flipping' Poster"
     else: items += "???"
@@ -131,10 +131,10 @@ if hereBefore == "1":
             trinketSave = str(saveCode[(saveCode.find("Trinkets:")+9):saveCode.find("CubeSolved:")])
             rubikssolved = saveCode[(saveCode.find("CubeSolved:")+11):len(saveCode)]
             answerGiven = 1
-            if math.log2(money) > flips:
+            if math.log2(money) - math.log2(100) > flips:
                 print("Mysterious Man: That is an illegal code.")
                 answerGiven = 0
-            restructureTrinkets(trinketSave)
+            restructureTrinkets(trinketSave,trinkets)
         elif saveCode == "":
             print("Mysterious Man: Continue on with my companion.")
             answerGiven = 1          
@@ -187,7 +187,7 @@ while money > 0:
             winInARow = 1
         print(f"The Flipper: Wow! You won {winamount} flipcoin! Care to play again?")
         pause()
-        response = input("The Flipper: Press 1 to play again, 2 to get your save code and 3 to leave. ")
+        response = input("The Flipper: Press 1 to play again, 2 to get your save code, 3 to view your trinkets and 4 to leave. ")
     else:
         if winInARow < 0 and bet != "edge":
             winInARow -= 1
@@ -195,9 +195,9 @@ while money > 0:
             winInARow = -1
         print(f"Oh dear... It was {result}, you lost. Care to play again?")
         pause()
-        response = input("The Flipper: Press 1 to play again, 2 to get your save code and 3 to leave. ")
+        response = input("The Flipper: Press 1 to play again, 2 to get your save code, 3 to view your trinkets and 4 to leave. ")
         pause()
-    if response == "3":
+    if response == "4":
         response = input("The Flipper: Are you sure you want to leave? Press 1 to return to the game, 2 to get your save code and leave and 3 to just leave. ")
         if response == "2":
             print(f"Mysterious Man: {saveCodeGenerator(trinketSave,trinkets)}")
@@ -207,6 +207,8 @@ while money > 0:
             break
     if response == "2":
         print(f"Mysterious Man: {saveCodeGenerator(trinketSave,trinkets)}")
+    if response == "3":
+        viewTrinkets(trinkets, flips)
     pause()
     #old man stuff
     if oldManPower > 0: oldManPower -= 1
@@ -314,7 +316,7 @@ if killScene == 1 and money > 100:
     print("Servant: Must I?")
     pause(4)
     print("*Suddenly you feel a sharp pain in the back of your head and you fall to the floor.*")
-    pause(4)
+    pause(8)
     print("The Flipper: The house. Always. WINS.")
     pause(4)
     print("*As you feel yourself slipping away, The Flipper approaches and takes all your flipcoin, all the while with a manic smile.*")        
