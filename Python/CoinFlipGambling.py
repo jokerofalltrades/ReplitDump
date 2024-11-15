@@ -34,27 +34,27 @@ def pause(timemodifier=1):
 def viewTrinkets(trinkets,flips):
     items = []
     rubiksdialogue = 0
-    if "1" in trinkets: items += "Spider's Eye"
-    else: items += "???"
-    if "2" in trinkets: items += "'Keep on Flipping' Poster"
-    else: items += "???"
-    if "3" in trinkets: items += "Rubik's Cube Keychain"
-    else: items += "???"
-    if "4" in trinkets and flips <= 300: items += "Half-Eaten Waffle"
-    elif "4" in trinkets and flips > 300: items += "Moldy Half-Eaten Waffle"
-    else: items += "???"
-    if "5" in trinkets: items += "placeholder"
-    else: items += "???"
-    if "6" in trinkets: items += "Old Man's Skeleton"
-    else: items += "???"
-    if "7" in trinkets: items += "placeholder"
-    else: items += "???"
-    if "8" in trinkets: items += "placeholder"
-    else: items += "???"
-    if "9" in trinkets: items += "placeholder"
-    else: items += "???"
-    if "10" in trinkets: items += "placeholder"
-    else: items += "???"
+    if "1" in trinkets: items.append("Spider's Eye")
+    else: items.append("???")
+    if "2" in trinkets: items.append("'Keep on Flipping' Poster")
+    else: items.append("???")
+    if "3" in trinkets: items.append("Rubik's Cube Keychain")
+    else: items.append("???")
+    if "4" in trinkets and flips <= 300: items.append("Half-Eaten Waffle")
+    elif "4" in trinkets and flips > 300: items.append("Moldy Half-Eaten Waffle")
+    else: items.append("???")
+    if "5" in trinkets: items.append("placeholder")
+    else: items.append("???")
+    if "6" in trinkets: items.append("Old Man's Skeleton")
+    else: items.append("???")
+    if "7" in trinkets: items.append("placeholder")
+    else: items.append("???")
+    if "8" in trinkets: items.append("placeholder")
+    else: items.append("???")
+    if "9" in trinkets: items.append("placeholder")
+    else: items.append("???")
+    if "10" in trinkets: items.append("placeholder")
+    else: items.append("???")
     while 1>0:
         print("The Flipper: Not this troublesome pack again...")
         pause()
