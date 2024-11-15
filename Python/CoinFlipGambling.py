@@ -55,14 +55,17 @@ def viewTrinkets(trinkets,flips):
     else: items.append("???")
     if "10" in trinkets: items.append("placeholder")
     else: items.append("???")
+    print("The Flipper: Not this troublesome pack again...")
+    pause()
     while 1>0:
-        print("The Flipper: Not this troublesome pack again...")
-        pause()
         print("Packsy: Hey there traveller!")
         pause()
         print("Packsy: You wish to know more about your trinkets... Sure!")
-        print(f"Packsy: Here are your trinkets:\n1: {items[0]}\n2: {items[1]}\n3: {items[2]}\n4: {items[3]}\n5: {items[4]}\n6: {items[5]}\n7: {items[6]}\n8: {items[7]}\n9: {items[8]}\n10:{items[9]}")
+        pause(8)
+        print(f"Packsy: Here are your trinkets:\n1: {items[0]}\n2: {items[1]}\n3: {items[2]}\n4: {items[3]}\n5: {items[4]}\n6: {items[5]}\n7: {items[6]}\n8: {items[7]}\n9: {items[8]}\n10: {items[9]}")
+        pause(8)
         response = input("Packsy: Would you like to view additional information about one of these? If so type their number, else press enter. ")
+        tempresponse = "0"
         if response == "":
             return
         if response == "1" and items[0] != "???":
@@ -94,10 +97,14 @@ def viewTrinkets(trinkets,flips):
                 pause(2)
                 print("Packsy: Wait? Another Dialogue Option!")
                 pause()
-            tempresponse = input("Packsy: Press enter to continue playing, or type 1 to find out about another trinket, or 2 for a mystery dialogue option")
+            tempresponse = input("Packsy: Press enter to continue playing, or type 1 to find out about another trinket, or # for a mystery dialogue option")
+        if tempresponse == "0":
+            print("Packsy: You don't have that trinket, silly!")
+            pause()
+            tempresponse = input("Packsy: Press enter to continue playing, or type 1 to find out about another trinket.")
         if tempresponse == "":
-                return
-        if tempresponse == "2":
+            return
+        if tempresponse == "#":
             if rubikssolved == 0:
                 rubikssolved = 1
                 print("Packsy: You want to solve it? Here!")
