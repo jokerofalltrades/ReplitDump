@@ -63,7 +63,7 @@ def viewTrinkets(trinkets,flips):
         print("Packsy: You wish to know more about your trinkets... Sure!")
         pause(8)
         print(f"Packsy: Here are your trinkets:\n1: {items[0]}\n2: {items[1]}\n3: {items[2]}\n4: {items[3]}\n5: {items[4]}\n6: {items[5]}\n7: {items[6]}\n8: {items[7]}\n9: {items[8]}\n10: {items[9]}")
-        pause(8)
+        pause(2)
         response = input("Packsy: Would you like to view additional information about one of these? If so type their number, else press enter. ")
         tempresponse = "0"
         if response == "":
