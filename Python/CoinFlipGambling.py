@@ -31,7 +31,7 @@ def restructureTrinkets(savedTrinkets, trinkets):
 def pause(timemodifier=1):
     time.sleep(0.25*timemodifier)
 
-def viewTrinkets(trinkets,flips):
+def viewTrinkets(trinkets,flips,rubikssolved,money):
     items = []
     rubiksdialogue = 0
     if "1" in trinkets: items.append("Spider's Eye")
@@ -75,7 +75,7 @@ def viewTrinkets(trinkets,flips):
             pause()
             print("Packsy: 'The spider eye is an eye from a spider. It gleams and glistens with a deep red colour in the light. Utterly Disgusting.'")
             pause(12)
-            tempresponse = input("Packsy: Inspiring, isn't it! Press enter to continue playing, or type 1 to find out about another trinket.")
+            tempresponse = input("Packsy: Inspiring, isn't it! Press enter to continue playing, or type 1 to find out about another trinket. ")
         elif response == "2" and items[1] != "???":
             print("Packsy: So, you wish to find out about the Poster?")
             pause()
@@ -83,7 +83,7 @@ def viewTrinkets(trinkets,flips):
             pause()
             print("Packsy: 'This poster inspires any and all gamblers to Keep on Flipping.'")
             pause(12)
-            tempresponse = input("Packsy: Inspiring, isn't it! Press enter to continue playing, or type 1 to find out about another trinket.")
+            tempresponse = input("Packsy: Inspiring, isn't it! Press enter to continue playing, or type 1 to find out about another trinket. ")
         elif response == "3" and items[2] != "???":
             print("Packsy: So, you wish to find out about the Rubik's Cube Keychain?")
             pause()
@@ -93,11 +93,11 @@ def viewTrinkets(trinkets,flips):
             pause(12)
             if rubiksdialogue == 0:
                 rubiksdialogue = 1
-                print("Packsy: Inspiring, isn't it! Press enter to continue playing, or type 1 to find out about another trinket.")
+                print("Packsy: Inspiring, isn't it! Press enter to continue playing, or type 1 to find out about another trinket. ")
                 pause(2)
                 print("Packsy: Wait? Another Dialogue Option!")
-                pause()
-            tempresponse = input("Packsy: Press enter to continue playing, or type 1 to find out about another trinket, or # for a mystery dialogue option")
+                pause(8)
+            tempresponse = input("Packsy: Press enter to continue playing, or type 1 to find out about another trinket, or # for a mystery dialogue option! ")
         if tempresponse == "0":
             print("Packsy: You don't have that trinket, silly!")
             pause()
@@ -113,8 +113,12 @@ def viewTrinkets(trinkets,flips):
                 pause()
                 print("Packsy: Here, have 50 flipcoin!")
                 money += 50
+                tempresponse = input("Packsy: Press enter to continue playing, or type 1 to find out about another trinket.")
             else:
                 print("Packsy: You already solved the cube, silly!")
+                tempresponse = input("Packsy: Press enter to continue playing, or type 1 to find out about another trinket.")
+        if tempresponse == "":
+            return
 
 
 print("The Flipper: Welcome to the world's best casino: We have one enthralling game here.")
@@ -135,8 +139,8 @@ if hereBefore == "1":
             oldManEncounters = int(saveCode[(saveCode.find("OldMan:")+7):saveCode.find("OldManPow:")])
             oldManPower = int(saveCode[(saveCode.find("OldManPow:")+10):saveCode.find("WinRow:")])
             winInARow = int(saveCode[(saveCode.find("WinRow:")+7):saveCode.find("Trinkets:")])
-            trinketSave = str(saveCode[(saveCode.find("Trinkets:")+9):saveCode.find("CubeSolved:")])
-            rubikssolved = saveCode[(saveCode.find("CubeSolved:")+11):len(saveCode)]
+            trinketSave = str(saveCode[(saveCode.find("Trinkets:")+9):saveCode.find("CubeSolve:")])
+            rubikssolved = int(saveCode[(saveCode.find("CubeSolve:")+10):len(saveCode)])
             answerGiven = 1
             if math.log2(money) - math.log2(100) > flips:
                 print("Mysterious Man: That is an illegal code.")
@@ -215,7 +219,7 @@ while money > 0:
     if response == "2":
         print(f"Mysterious Man: {saveCodeGenerator(trinketSave,trinkets)}")
     if response == "3":
-        viewTrinkets(trinkets, flips)
+        viewTrinkets(trinkets, flips, rubikssolved, money)
     pause()
     #old man stuff
     if oldManPower > 0: oldManPower -= 1
