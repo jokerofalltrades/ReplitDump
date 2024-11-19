@@ -31,7 +31,8 @@ def restructureTrinkets(savedTrinkets, trinkets):
 def pause(timemodifier=1):
     time.sleep(0.25*timemodifier)
 
-def viewTrinkets(trinkets,flips,rubikssolved,money):
+def viewTrinkets(trinkets,flips,rubikssolved):
+    global money
     items = []
     rubiksdialogue = 0
     if "1" in trinkets: items.append("Spider's Eye")
@@ -101,7 +102,7 @@ def viewTrinkets(trinkets,flips,rubikssolved,money):
         if tempresponse == "0":
             print("Packsy: You don't have that trinket, silly!")
             pause()
-            tempresponse = input("Packsy: Press enter to continue playing, or type 1 to find out about another trinket.")
+            tempresponse = input("Packsy: Press enter to continue playing, or type 1 to find out about another trinket. ")
         if tempresponse == "":
             return
         if tempresponse == "#":
@@ -113,10 +114,10 @@ def viewTrinkets(trinkets,flips,rubikssolved,money):
                 pause()
                 print("Packsy: Here, have 50 flipcoin!")
                 money += 50
-                tempresponse = input("Packsy: Press enter to continue playing, or type 1 to find out about another trinket.")
+                tempresponse = input("Packsy: Press enter to continue playing, or type 1 to find out about another trinket. ")
             else:
                 print("Packsy: You already solved the cube, silly!")
-                tempresponse = input("Packsy: Press enter to continue playing, or type 1 to find out about another trinket.")
+                tempresponse = input("Packsy: Press enter to continue playing, or type 1 to find out about another trinket. ")
         if tempresponse == "":
             return
 
@@ -219,7 +220,7 @@ while money > 0:
     if response == "2":
         print(f"Mysterious Man: {saveCodeGenerator(trinketSave,trinkets)}")
     if response == "3":
-        viewTrinkets(trinkets, flips, rubikssolved, money)
+        viewTrinkets(trinkets, flips, rubikssolved)
     pause()
     #old man stuff
     if oldManPower > 0: oldManPower -= 1
