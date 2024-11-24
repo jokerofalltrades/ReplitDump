@@ -2,7 +2,7 @@ import random
 import time
 import math
 
-# Remember to periodically check code with 'pycodestyle --first CoinFlipGambling.py
+# Remember to periodically check code with 'pycodestyle --first CoinFlipGambling.py' and 'pylint CoinFlipGambling.py'
 money = 100
 answerGiven = 0
 flips = 0
@@ -18,6 +18,7 @@ trinkets = ["", "", "", "", "", "", "", "", "", ""]
 trinketSave = ""
 killScene = 0
 rubikssolved = 0
+result = ""
 
 
 def saveCodeGenerator(trinketSave, trinkets):
@@ -63,7 +64,7 @@ def viewTrinkets(trinkets, flips, rubikssolved):
     else: items.append("???")
     print("The Flipper: Not this troublesome pack again...")
     pause()
-    while 1 > 0:
+    while True:
         print("Packsy: Hey there traveller!")
         pause()
         print("Packsy: You wish to know more about your trinkets... Sure!")
@@ -168,15 +169,15 @@ while money > 0:
     bet = input("The Flipper: Odds: Heads - x1.9 your stake, Tails - x1.9 your stake, Edge - x500 your stake (Enter Heads, Tails or Edge) ")
     pause()
     # check for valid stake
-    while 1 > 0:
+    while True:
         stake = input("How much do you want to bet? ")
         try:
-            stake = int(stake)
+            stake = math.ceil(stake)
         except:
             print("Please enter a valid input.")
             stake = 0
         else:
-            if stake <= money and stake >= 0: break
+            if 0 < stake <= money: break
             pause()
             print("That is an invalid stake.")
         pause()
@@ -188,7 +189,7 @@ while money > 0:
     if oldManPower > 0: coinFlipDecider = 1
     if coinFlipDecider <= 4999: result = "heads"
     if coinFlipDecider >= 5002: result = "tails"
-    if coinFlipDecider >= 5000 and coinFlipDecider <= 5001: result = "edge"
+    if 5000 <= coinFlipDecider <= 5001: result = "edge"
     if result == bet:
         if bet != "edge":
             winamount = round(stake*1.9)
@@ -219,7 +220,7 @@ while money > 0:
         if response == "2":
             print(f"Mysterious Man: {saveCodeGenerator(trinketSave,trinkets)}")
             break
-        elif response == "3":
+        if response == "3":
             killScene = 1
             break
     if response == "2":
@@ -339,7 +340,7 @@ if killScene == 1 and money > 100:
     print("*As you feel yourself slipping away, The Flipper approaches and takes all your flipcoin, all the while with a manic smile.*")
 elif money > 0:
     print("The Flipper: Thanks for playing! See you again soon!")
-else: 
+else:
     print("The Flipper: What a disappointing end...")
     pause()
     print("The Flipper: Thanks for your money.")
