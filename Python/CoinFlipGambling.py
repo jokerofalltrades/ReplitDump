@@ -2,6 +2,7 @@ import random
 import time
 import math
 
+# Remember to periodically check code with 'pycodestyle --first CoinFlipGambling.py
 money = 100
 answerGiven = 0
 flips = 0
@@ -13,25 +14,29 @@ _5FlipDialogue2 = 0
 _10FlipDialogue = 0
 _10FlipDialogue2 = 0
 taxDialogue = 0
-trinkets = ["","","","","","","","","",""]
+trinkets = ["", "", "", "", "", "", "", "", "", ""]
 trinketSave = ""
 killScene = 0
 rubikssolved = 0
 
-def saveCodeGenerator(trinketSave,trinkets):
+
+def saveCodeGenerator(trinketSave, trinkets):
     for item in trinkets:
         trinketSave += str(item)
     newSaveCode = f"ValidSave:Money:{money}Flips:{flips}OldMan:{oldManEncounters}OldManPow:{oldManPower}WinRow:{winInARow}Trinkets:{trinketSave}CubeSolve:{rubikssolved}".encode("utf-8").hex()
     return newSaveCode
 
+
 def restructureTrinkets(savedTrinkets, trinkets):
     for i in range(len(savedTrinkets)):
         trinkets += savedTrinkets[i]
-    
+
+
 def pause(timemodifier=1):
     time.sleep(0.25*timemodifier)
 
-def viewTrinkets(trinkets,flips,rubikssolved):
+
+def viewTrinkets(trinkets, flips, rubikssolved):
     global money
     items = []
     rubiksdialogue = 0
@@ -58,7 +63,7 @@ def viewTrinkets(trinkets,flips,rubikssolved):
     else: items.append("???")
     print("The Flipper: Not this troublesome pack again...")
     pause()
-    while 1>0:
+    while 1 > 0:
         print("Packsy: Hey there traveller!")
         pause()
         print("Packsy: You wish to know more about your trinkets... Sure!")
@@ -127,7 +132,7 @@ pause()
 print("The Flipper: Our game is gambling on a coin flip. You start with 100 flipcoin.")
 pause()
 hereBefore = input("The Flipper: If you have wasted your time here before, enter 1, else enter 2. ")
-#savecode code
+# savecode code
 if hereBefore == "1":
     while answerGiven == 0:
         print("Mysterious Man: Welcome to my Save Cove.")
@@ -149,7 +154,7 @@ if hereBefore == "1":
             restructureTrinkets(trinketSave,trinkets)
         elif saveCode == "":
             print("Mysterious Man: Continue on with my companion.")
-            answerGiven = 1          
+            answerGiven = 1
         else:
             print("Mysterious Man: That is an invalid save code.")
 print("The Flipper: Welcome to the Casino! Let's gamble on a coin toss!")
@@ -162,7 +167,7 @@ while money > 0:
     print("The Flipper: Do you want to bet on heads, tails, or landing on its edge?")
     bet = input("The Flipper: Odds: Heads - x1.9 your stake, Tails - x1.9 your stake, Edge - x500 your stake (Enter Heads, Tails or Edge) ")
     pause()
-    #check for valid stake
+    # check for valid stake
     while 1 > 0:
         stake = input("How much do you want to bet? ")
         try:
@@ -331,7 +336,7 @@ if killScene == 1 and money > 100:
     pause(8)
     print("The Flipper: The house. Always. WINS.")
     pause(4)
-    print("*As you feel yourself slipping away, The Flipper approaches and takes all your flipcoin, all the while with a manic smile.*")        
+    print("*As you feel yourself slipping away, The Flipper approaches and takes all your flipcoin, all the while with a manic smile.*")
 elif money > 0:
     print("The Flipper: Thanks for playing! See you again soon!")
 else: 
