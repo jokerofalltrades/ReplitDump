@@ -172,11 +172,12 @@ while money > 0:
     while True:
         stake = input("How much do you want to bet? ")
         try:
-            stake = math.ceil(stake)
+            stake = int(stake)
         except:
             print("Please enter a valid input.")
             stake = 0
         else:
+            stake = int(math.ceil(stake))
             if 0 < stake <= money: break
             pause()
             print("That is an invalid stake.")
@@ -278,13 +279,12 @@ while money > 0:
     if winInARow == -10 and _10FlipDialogue2 == 0:
         print("The Flipper: Someone's extremely unlucky today.")
         pause()
-        print(f"The Flipper: Here. A gift. 10% of your flipcoins.")
+        print(f"The Flipper: Here. A gift. 10% of your flipcoin.")
         pause()
-        result = int(money * 0.1) != 1 and "flipcoins" or "flipcoin"
-        print(f"The Flipper: Enjoy your {int(money*0.1)} {result}.")
+        print(f"The Flipper: Enjoy your {int(money*0.1)} flipcoin.")
         money = int(money*1.1)
     if money >= 1000 and _10FlipDialogue2 == 1 and taxDialogue == 0:
-        print("The Flipper: Remember when I gave you some flipcoins?")
+        print("The Flipper: Remember when I gave you some flipcoin?")
         pause()
         print("The Flipper: I'll need some back. 10% to be exact.")
         money = round(money*0.9)
