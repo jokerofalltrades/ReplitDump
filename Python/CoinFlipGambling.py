@@ -175,7 +175,7 @@ while money > 0:
         stake = input("How much do you want to bet? ")
         try:
             stake = int(stake)
-        except:
+        except ValueError:
             print("Please enter a valid input.")
             stake = 0
         else:
