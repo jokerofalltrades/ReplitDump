@@ -1,3 +1,5 @@
+"""This module runs a coin gambling game. It is self contained."""
+
 import random
 import time
 import math
