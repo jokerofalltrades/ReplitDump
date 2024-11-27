@@ -26,9 +26,8 @@ def pause(timemodifier=1):
     time.sleep(0.25*timemodifier)
 
 
-def viewTrinkets(trinkets, flips, rubikssolved):
+def viewTrinkets(trinkets, flips, rubikssolved, money):
     """Displays information about the player's trinkets."""
-    global money
     items = []
     rubiksdialogue = 0
     if "1" in trinkets: items.append("Spider's Eye")
@@ -64,7 +63,7 @@ def viewTrinkets(trinkets, flips, rubikssolved):
         response = input("Packsy: Would you like to view additional information about one of these? If so type their number, else press enter. ")
         tempresponse = "0"
         if response == "":
-            return
+            return money
         if response == "1" and items[0] != "???":
             print("Packsy: So, you wish to know more about the spider's eye?")
             pause()
@@ -100,7 +99,7 @@ def viewTrinkets(trinkets, flips, rubikssolved):
             pause()
             tempresponse = input("Packsy: Press enter to continue playing, or type 1 to find out about another trinket. ")
         if tempresponse == "":
-            return
+            return money
         if tempresponse == "#":
             if rubikssolved == 0:
                 rubikssolved = 1
@@ -115,7 +114,7 @@ def viewTrinkets(trinkets, flips, rubikssolved):
                 print("Packsy: You already solved the cube, silly!")
                 tempresponse = input("Packsy: Press enter to continue playing, or type 1 to find out about another trinket. ")
         if tempresponse == "":
-            return
+            return money
 
 
 def main():
@@ -146,8 +145,8 @@ def main():
         while answerGiven == 0:
             print("Mysterious Man: Welcome to my Save Cove.")
             hexSaveCode = input("Mysterious Man: If you do not have a save press enter. Else please enter your save code: ")
-            bytes_obj = bytes.fromhex(hexSaveCode)
-            saveCode = bytes_obj.decode('utf-8')
+            bytesObj = bytes.fromhex(hexSaveCode)
+            saveCode = bytesObj.decode('utf-8')
             if saveCode.find("ValidSave:") != -1:
                 money = int(saveCode[(saveCode.find("Money:")+6):(saveCode.find("Flips:"))])
                 flips = int(saveCode[(saveCode.find("Flips:")+6):saveCode.find("OldMan:")])
@@ -227,15 +226,15 @@ def main():
         if response == "4":
             response = input("The Flipper: Are you sure you want to leave? Press 1 to return to the game, 2 to get your save code and leave and 3 to just leave. ")
             if response == "2":
-                print(f"Mysterious Man: {saveCodeGenerator(money,trinketSave,trinkets,flips,oldManEncounters,oldManPower,winInARow,rubikssolved)}")
+                print(f"Mysterious Man: {saveCodeGenerator(money, trinketSave, trinkets, flips, oldManEncounters, oldManPower, winInARow, rubikssolved)}")
                 break
             if response == "3":
                 killScene = 1
                 break
         if response == "2":
-            print(f"Mysterious Man: {saveCodeGenerator(money,trinketSave,trinkets,flips,oldManEncounters,oldManPower,winInARow,rubikssolved)}")
+            print(f"Mysterious Man: {saveCodeGenerator(money, trinketSave, trinkets, flips, oldManEncounters, oldManPower, winInARow, rubikssolved)}")
         if response == "3":
-            viewTrinkets(trinkets, flips, rubikssolved)
+            money = viewTrinkets(trinkets, flips, rubikssolved, money)
         pause()
         #old man stuff
         if oldManPower > 0: oldManPower -= 1
