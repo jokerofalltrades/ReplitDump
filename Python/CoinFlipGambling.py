@@ -94,6 +94,17 @@ def viewTrinkets(trinkets, flips, rubikssolved, money):
                 print("Packsy: Wait? Another Dialogue Option!")
                 pause(8)
             tempresponse = input("Packsy: Press enter to continue playing, or type 1 to find out about another trinket, or # for a mystery dialogue option! ")
+        elif response == "4" and items[3] != "???":
+            print(f"Packsy: So, you wish to find out about the {items[3]}?")
+            pause()
+            print("Packsy: Let me read you an exercpt from its description...")
+            pause()
+            if items[3] == "Half-Eaten Waffle":
+                print("Packsy: 'A half-eaten, unappetising waffle. You wonder who would be so stupid as to not finish their waffle. Might go moldy soon.'")
+            else:
+                print("Packsy: Euhhh... That stinks. 'A half-eaten, moldy waffle. It stinks really badly...' Euhhh, my eyes are watering.'")
+            pause(12)
+            tempresponse = input("Packsy: Inspiring, isn't it! Press enter to continue playing, or type 1 to find out about another trinket. ")
         if tempresponse == "0":
             print("Packsy: You don't have that trinket, silly!")
             pause()
