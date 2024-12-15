@@ -102,7 +102,7 @@ def viewTrinkets(trinkets, flips, rubikssolved, money):
             if items[3] == "Half-Eaten Waffle":
                 print("Packsy: 'A half-eaten, unappetising waffle. You wonder who would be so stupid as to not finish their waffle. Might go moldy soon.'")
             else:
-                print("Packsy: Euhhh... That stinks. 'A half-eaten, moldy waffle. It stinks really badly...' Euhhh, my eyes are watering.'")
+                print("Packsy: 'Euhhh... That stinks. 'A half-eaten, moldy waffle. It stinks really badly...' Euhhh, my eyes are watering.'")
             pause(12)
             tempresponse = input("Packsy: Inspiring, isn't it! Press enter to continue playing, or type 1 to find out about another trinket. ")
         if tempresponse == "0":
