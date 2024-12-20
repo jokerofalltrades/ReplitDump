@@ -146,6 +146,7 @@ def main():
     killScene = 0
     rubikssolved = 0
     result = ""
+    wiseMessengerEncounters = 0
     print("The Flipper: Welcome to the world's best casino: We have one enthralling game here.")
     pause()
     print("The Flipper: Our game is gambling on a coin flip. You start with 100 flipcoin.")
@@ -284,6 +285,53 @@ def main():
                 pause(4)
                 print("The Flipper: Good. Shall we continue?")
                 oldManEncounters += 1
+        #wise messenger
+        if oldManEncounters >= 4 and flips >= 500 + (50 * wiseMessengerEncounters):
+            if wiseMessengerEncounters == 0:
+                print("???: You haven't met me before have you?")
+                pause()
+                print("???: I've been brought here to free you from this loop.")
+                pause()
+                print("Wise Messenger: I am the Wise Messenger.")
+                wiseMessengerEncounters += 1
+            elif wiseMessengerEncounters == 1:
+                print("Wise Messenger: Why should you want escape you may ask...")
+                pause()
+                print("Wise Messenger: You see, HE is evil. He's in it for the money only.")
+                pause()
+                print("Wise Messenger: There's an old tale that his servant has killed more than 500 'robbers' as HE calls them.")
+                pause()
+                print("Wise Messenger: Be Back Soon.")
+                wiseMessengerEncounters += 2
+            elif wiseMessengerEncounters == 3:
+                print("Wise Messenger: If you want to escape his clutches, you will have to kill him.")
+                pause()
+                print("Wise Messenger: I can help out with this quest but you will have to do the killing yourself.")
+                pause()
+                #Key Event
+                wiseMessengerHelp = input("Wise Messenger: So, do you want to join me and slay HIM once and for all. (Yes or No) ")
+                if wiseMessengerHelp.lower() == "yes":
+                    wiseMessengerEncounters += 0.4
+                else:
+                    wiseMessengerEncounters += 0.1
+            elif wiseMessengerEncounters == 3.1:
+                print("Wise Messenger: Listen it would be better for both of us if you joined me to slay HIM.")
+                pause()
+                wiseMessengerHelp = input("Wise Messenger: So, do you want to join me and slay HIM once and for all. (Yes or No) ")
+                if wiseMessengerHelp.lower() == "yes":
+                    wiseMessengerEncounters = 3.4
+                else:
+                    print("Wise Messenger: If you so wish, I shall leave you to it. Enjoy being HIS puppet.")
+            elif wiseMessengerEncounters == 3.4:
+                pass
+
+        #Murder ending: Kill the Flipper
+        #Mercy Ending: About to kill Flipper but spare him
+        #Use for mercy ending: Thomas: Hello I'm so big right now im the grey (so big)
+        #Puppet ending: Refuse the Wise messenger's help and reach 1500 flips
+        #'Own Knowledge' ending: Refuse Wise Messenger's help but still kill flipper
+        #'YOU IDIOT' ending: Refuse Wise Messenger's help and reach mercy ending - flipper entraps you
+        #Game Over / House always wins
         #random dialogue bits
         if winInARow == 5 and _5FlipDialogue == 0:
             print("The Flipper: Someone's lucky today.")
