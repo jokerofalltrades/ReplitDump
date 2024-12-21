@@ -7,11 +7,11 @@ import math
 # Remember to periodically check code with 'pycodestyle --first CoinFlipGambling.py' and 'pylint CoinFlipGambling.py'
 
 
-def saveCodeGenerator(money, trinketSave, trinkets, flips, oldManEncounters, oldManPower, winInARow, rubikssolved):
+def saveCodeGenerator(money, trinketSave, trinkets, flips, oldManEncounters, oldManPower, winInARow, rubikssolved, wiseMessengerEncounters):
     """Produces a save code, after compressing the user's trinkets."""
     for item in trinkets:
         trinketSave += str(item)
-    newSaveCode = f"ValidSave:Money:{money}Flips:{flips}OldMan:{oldManEncounters}OldManPow:{oldManPower}WinRow:{winInARow}Trinkets:{trinketSave}CubeSolve:{rubikssolved}".encode("utf-8").hex()
+    newSaveCode = f"ValidSave:Money:{money}Flips:{flips}OldMan:{oldManEncounters}OldManPow:{oldManPower}WinRow:{winInARow}Trinkets:{trinketSave}CubeSolve:{rubikssolved}WiseMessenger:{wiseMessengerEncounters}".encode("utf-8").hex()
     return newSaveCode
 
 
@@ -22,7 +22,7 @@ def restructureTrinkets(savedTrinkets, trinkets):
 
 
 def pause(timemodifier=1):
-    """Generic time.sleep shortcut"""
+    """Generic time.sleep() shortcut - timemodifier is multiplied by 0.25 and inputted into a time.sleep() function."""
     time.sleep(0.25*timemodifier)
 
 
@@ -39,7 +39,7 @@ def viewTrinkets(trinkets, flips, rubikssolved, money):
     if "4" in trinkets and flips <= 300: items.append("Half-Eaten Waffle")
     elif "4" in trinkets and flips > 300: items.append("Moldy Half-Eaten Waffle")
     else: items.append("???")
-    if "5" in trinkets: items.append("placeholder")
+    if "5" in trinkets: items.append("Golden Spear")
     else: items.append("???")
     if "6" in trinkets: items.append("Old Man's Skeleton")
     else: items.append("???")
@@ -93,7 +93,7 @@ def viewTrinkets(trinkets, flips, rubikssolved, money):
                 pause(2)
                 print("Packsy: Wait? Another Dialogue Option!")
                 pause(8)
-            tempresponse = input("Packsy: Press enter to continue playing, or type 1 to find out about another trinket, or # for a mystery dialogue option! ")
+            tempresponse = input("Packsy: Press enter to continue playing, or type 1 to find out about another trinket, or 2 for a mystery dialogue option! ")
         elif response == "4" and items[3] != "???":
             print(f"Packsy: So, you wish to find out about the {items[3]}?")
             pause()
@@ -102,16 +102,43 @@ def viewTrinkets(trinkets, flips, rubikssolved, money):
             if items[3] == "Half-Eaten Waffle":
                 print("Packsy: 'A half-eaten, unappetising waffle. You wonder who would be so stupid as to not finish their waffle. Might go moldy soon.'")
             else:
-                print("Packsy: 'Euhhh... That stinks. 'A half-eaten, moldy waffle. It stinks really badly...' Euhhh, my eyes are watering.'")
+                print("Packsy: Euhhh... That stinks. 'A half-eaten, moldy waffle. It stinks really badly...' Euhhh, my eyes are watering.")
             pause(12)
             tempresponse = input("Packsy: Inspiring, isn't it! Press enter to continue playing, or type 1 to find out about another trinket. ")
+        elif response == "5" and items[4] != "???":
+            print("Packsy: So, you wish to find out about the Golden Spear?")
+            pause()
+            print("Packsy: Let me read you an exercpt from its description...")
+            pause()
+            print("Packsy: 'A Golden Spear, thousands of years old. Its handle and blade have been meticulously crafted to ensure a sharp edge.'")
+            pause(12)
+            tempresponse = input("Packsy: Inspiring, isn't it! Press enter to continue playing, or type 1 to find out about another trinket. ")
+        elif response == "6" and items[5] != "???":
+            print("Packsy: So, you wish to find out about the Old Man's Skeleton?")
+            pause()
+            print("Packsy: Poor guy...")
+            pause()
+            print("Packsy: Did he really deser-")
+            pause()
+            print("The Flipper: Keep your mouth shut. If you want to li- be my friend.")
+            pause(4)
+            print("Packsy: ...")
+            pause()
+            print("Packsy: Let me read you an exercpt from its description then...")
+            pause()
+            print("Packsy: 'The Old Man's Skeleton. Comprised of 206 bones.'")
+            pause(8)
+            print("Packsy: Hold up. I think I see something written on the skeleton.")
+            pause(12)
+            tempresponse = input("Packsy: Hmm... Press enter to continue playing, type 1 to find out about another trinket or type 2 to inspect the skeleton. ")
         if tempresponse == "0":
             print("Packsy: You don't have that trinket, silly!")
             pause()
             tempresponse = input("Packsy: Press enter to continue playing, or type 1 to find out about another trinket. ")
+        # For responses following a normal trinket
         if tempresponse == "":
             return money
-        if tempresponse == "#":
+        if tempresponse == "2" and response == "3":
             if rubikssolved == 0:
                 rubikssolved = 1
                 print("Packsy: You want to solve it? Here!")
@@ -124,6 +151,22 @@ def viewTrinkets(trinkets, flips, rubikssolved, money):
             else:
                 print("Packsy: You already solved the cube, silly!")
                 tempresponse = input("Packsy: Press enter to continue playing, or type 1 to find out about another trinket. ")
+        if tempresponse == "2" and response == "6":
+            print("Packsy: Let's have a closer look shall we...")
+            pause(2)
+            print("Packsy: *inaudible muttering*")
+            pause(2)
+            print("Packsy: Oh! There! Look! It's a... poem?")
+            pause()
+            print("""Packsy: 
+'Mold makes watery eyes
+and spears do make HIM cry
+and just 2g of cyanide to make HIM die'""")
+            pause(12)
+            print("Packsy: Interesting... Ominous... I wonder who they're talking about when the say HIM...")
+            pause(8)
+            tempresponse = input("Packsy: Anyway, Press enter to continue playing, or type 1 to find out about another trinket. ")
+        # For responses following special events
         if tempresponse == "":
             return money
 
@@ -166,7 +209,8 @@ def main():
                 oldManPower = int(saveCode[(saveCode.find("OldManPow:")+10):saveCode.find("WinRow:")])
                 winInARow = int(saveCode[(saveCode.find("WinRow:")+7):saveCode.find("Trinkets:")])
                 trinketSave = str(saveCode[(saveCode.find("Trinkets:")+9):saveCode.find("CubeSolve:")])
-                rubikssolved = int(saveCode[(saveCode.find("CubeSolve:")+10):len(saveCode)])
+                rubikssolved = int(saveCode[(saveCode.find("CubeSolve:")+10):saveCode.find("WiseMessenger:")])
+                wiseMessengerEncounters = round(float(saveCode[(saveCode.find("WiseMessenger:")+14):len(saveCode)]),1)
                 answerGiven = 1
                 if math.log2(money) - math.log2(100) > flips:
                     print("Mysterious Man: That is an illegal code.")
@@ -189,17 +233,17 @@ def main():
         pause()
         # check for valid stake
         while True:
-            stake = input("How much do you want to bet? ")
+            stake = input("The Flipper: How much do you want to bet? ")
             try:
                 stake = int(stake)
             except ValueError:
-                print("Please enter a valid input.")
+                print("The Flipper: Please enter a valid input.")
                 stake = 0
             else:
                 stake = int(math.ceil(stake))
                 if 0 < stake <= money: break
                 pause()
-                print("That is an invalid stake.")
+                print("The Flipper: That is an invalid stake.")
             pause()
         bet = bet.lower()
         money -= stake
@@ -286,7 +330,7 @@ def main():
                 print("The Flipper: Good. Shall we continue?")
                 oldManEncounters += 1
         #wise messenger
-        if oldManEncounters >= 4 and flips >= 500 + (50 * wiseMessengerEncounters):
+        if oldManEncounters >= 4 and flips >= 700 + (50 * wiseMessengerEncounters):
             if wiseMessengerEncounters == 0:
                 print("???: You haven't met me before have you?")
                 pause()
@@ -384,6 +428,13 @@ def main():
             pause()
             print("The Flipper: You can have my half-eaten waffle.")
             trinkets[3] = "4"
+        if flips == 1000 and "5" not in trinkets:
+            print("The Flipper: You're our most loyal customer ever...")
+            pause()
+            print("The Flipper: So here, an artifact older than time itself, something that has been handed down from generation to generation.")
+            pause(2)
+            print("The Flipper: A golden spear.")
+            trinkets[4] = "5"
         if flips >= 500 and oldManEncounters == 4 and "6" not in trinkets:
             print("The Flipper: You seem to really miss that old man...")
             pause()
