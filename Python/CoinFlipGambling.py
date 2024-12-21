@@ -158,10 +158,7 @@ def viewTrinkets(trinkets, flips, rubikssolved, money):
             pause(2)
             print("Packsy: Oh! There! Look! It's a... poem?")
             pause()
-            print("""Packsy: 
-'Mold makes watery eyes
-and spears do make HIM cry
-and just 2g of cyanide to make HIM die'""")
+            print("Packsy: 'Mold makes watery eyes\nand spears do make HIM cry\nand just 2g of cyanide to make HIM die'")
             pause(12)
             print("Packsy: Interesting... Ominous... I wonder who they're talking about when the say HIM...")
             pause(8)
