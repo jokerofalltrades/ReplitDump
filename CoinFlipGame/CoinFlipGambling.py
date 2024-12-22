@@ -9,16 +9,15 @@ import math
 
 def saveCodeGenerator(money, trinketSave, trinkets, flips, oldManEncounters, oldManPower, winInARow, rubikssolved, wiseMessengerEncounters):
     """Produces a save code, after compressing the user's trinkets."""
-    for item in trinkets:
-        trinketSave += str(item)
+    trinketSave = "".join(str(item) for item in trinkets)
     newSaveCode = f"ValidSave:Money:{money}Flips:{flips}OldMan:{oldManEncounters}OldManPow:{oldManPower}WinRow:{winInARow}Trinkets:{trinketSave}CubeSolve:{rubikssolved}WiseMessenger:{wiseMessengerEncounters}".encode("utf-8").hex()
     return newSaveCode
 
 
 def restructureTrinkets(savedTrinkets, trinkets):
     """Recovers the player's trinkets after loading from a save."""
-    for i in range(len(savedTrinkets)):
-        trinkets += savedTrinkets[i]
+    trinkets = [trinket for trinket in savedTrinkets]
+    return trinkets
 
 
 def pause(timemodifier=1):
@@ -181,7 +180,7 @@ def main():
     _10FlipDialogue = 0
     _10FlipDialogue2 = 0
     taxDialogue = 0
-    trinkets = ["", "", "", "", "", "", "", "", "", ""]
+    trinkets = [" "]*10
     trinketSave = ""
     killScene = 0
     rubikssolved = 0
@@ -212,7 +211,8 @@ def main():
                 if math.log2(money) - math.log2(100) > flips:
                     print("Mysterious Man: That is an illegal code.")
                     answerGiven = 0
-                restructureTrinkets(trinketSave,trinkets)
+                trinkets = restructureTrinkets(trinketSave,trinkets)
+                print("Mysterious Man: Continue on with my companion.")
             elif saveCode == "":
                 print("Mysterious Man: Continue on with my companion.")
                 answerGiven = 1
@@ -279,13 +279,13 @@ def main():
         if response == "4":
             response = input("The Flipper: Are you sure you want to leave? Press 1 to return to the game, 2 to get your save code and leave and 3 to just leave. ")
             if response == "2":
-                print(f"Mysterious Man: {saveCodeGenerator(money, trinketSave, trinkets, flips, oldManEncounters, oldManPower, winInARow, rubikssolved)}")
+                print(f"Mysterious Man: {saveCodeGenerator(money, trinketSave, trinkets, flips, oldManEncounters, oldManPower, winInARow, rubikssolved, wiseMessengerEncounters)}")
                 break
             if response == "3":
                 killScene = 1
                 break
         if response == "2":
-            print(f"Mysterious Man: {saveCodeGenerator(money, trinketSave, trinkets, flips, oldManEncounters, oldManPower, winInARow, rubikssolved)}")
+            print(f"Mysterious Man: {saveCodeGenerator(money, trinketSave, trinkets, flips, oldManEncounters, oldManPower, winInARow, rubikssolved, wiseMessengerEncounters)}")
         if response == "3":
             money = viewTrinkets(trinkets, flips, rubikssolved, money)
         pause()
