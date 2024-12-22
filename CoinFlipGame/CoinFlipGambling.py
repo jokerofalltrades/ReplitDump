@@ -16,7 +16,7 @@ def saveCodeGenerator(money, trinketSave, trinkets, flips, oldManEncounters, old
 
 def restructureTrinkets(savedTrinkets, trinkets):
     """Recovers the player's trinkets after loading from a save."""
-    trinkets = [trinket for trinket in savedTrinkets]
+    trinkets =list(savedTrinkets)
     return trinkets
 
 
