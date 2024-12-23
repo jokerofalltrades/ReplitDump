@@ -23,29 +23,18 @@ def print(input, timemodifier=1):
 
 def viewTrinkets(trinkets, flips, rubikssolved, money) -> int:
     """Displays information about the player's trinkets."""
-    items = []
     rubiksdialogue = 0
-    if "1" in trinkets: items.append("Spider's Eye")
-    else: items.append("???")
-    if "2" in trinkets: items.append("'Keep on Flipping' Poster")
-    else: items.append("???")
-    if "3" in trinkets: items.append("Rubik's Cube Keychain")
-    else: items.append("???")
-    if "4" in trinkets and flips <= 300: items.append("Half-Eaten Waffle")
-    elif "4" in trinkets and flips > 300: items.append("Moldy Half-Eaten Waffle")
-    else: items.append("???")
-    if "5" in trinkets: items.append("Golden Spear")
-    else: items.append("???")
-    if "6" in trinkets: items.append("Old Man's Skeleton")
-    else: items.append("???")
-    if "7" in trinkets: items.append("placeholder")
-    else: items.append("???")
-    if "8" in trinkets: items.append("placeholder")
-    else: items.append("???")
-    if "9" in trinkets: items.append("placeholder")
-    else: items.append("???")
-    if "10" in trinkets: items.append("placeholder")
-    else: items.append("???")
+    items = ["Spider's Eye" if "1" in trinkets else "???",
+             "'Keep on Flipping' Poster" if "2" in trinkets else "???",
+             "Rubik's Cube Keychain" if "3" in trinkets else "???",
+             "Half-Eaten Waffle" if "4" in trinkets and flips <= 300 else
+             "Moldy Half-Eaten Waffle" if "4" in trinkets and flips > 300 else "???",
+             "Golden Spear" if "5" in trinkets else "???",
+             "Old Man's Skeleton" if "6" in trinkets else "???",
+             "placeholder" if "7" in trinkets else "???",
+             "placeholder" if "8" in trinkets else "???",
+             "placeholder" if "9" in trinkets else "???",
+             "placeholder" if "10" in trinkets else "???"]
     print("The Flipper: Not this troublesome pack again...")
     while True:
         print("Packsy: Hey there traveller!")     
