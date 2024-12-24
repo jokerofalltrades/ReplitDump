@@ -190,11 +190,11 @@ def main():
                     answerGiven = 0
                 printAndPause("Mysterious Man: Continue on with my companion.")
             elif saveCode == "":
-                printAndPause("Mysterious Man: Let's get you set up then.")
+                print("Mysterious Man: Let's get you set up then.")
                 startUp()
                 answerGiven = 1
             else:
-                printAndPause("Mysterious Man: That is an invalid save code.")
+                print("Mysterious Man: That is an invalid save code.")
     else:
         startUp()
     clear()
