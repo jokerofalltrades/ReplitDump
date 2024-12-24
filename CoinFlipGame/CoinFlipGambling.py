@@ -10,22 +10,22 @@ import os
 def startUp() -> float:
     """Sets up the game."""
     textSpeed = inputAndClear("Settings Tinkerer: Before we start, how fast would like the text to appear? (V for Very Slow, S for Slow, M for Medium or F for Fast) ")
-    notAnswerGiven = True
     global pauseSpeed
-    while notAnswerGiven:
-        notAnswerGiven = False  
+    while True:
         if textSpeed.lower() == "v":
             pauseSpeed = 1
+            break
         elif textSpeed.lower() == "s":
             pauseSpeed = 0.75
+            break
         elif textSpeed.lower() == "m":
             pauseSpeed = 0.5
+            break
         elif textSpeed.lower() == "f":
             pauseSpeed = 0.35
-        else:
-            notAnswerGiven = True
-            textSpeed = input("Settings Tinkerer: Please enter a valid input. (V for Very Slow, S for Slow, M for Medium or F for Fast) ")
-        printAndPause("Settings Tinkerer: Have fun with the game!")
+            break
+        textSpeed = input("Settings Tinkerer: Please enter a valid input. (V for Very Slow, S for Slow, M for Medium or F for Fast) ")
+    printAndPause("Settings Tinkerer: Have fun with the game!")
 
 
 def saveCodeGenerator(money, trinketSave, trinkets, flips, oldManEncounters, oldManPower, winInARow, rubikssolved, wiseMessengerEncounters) -> str:
