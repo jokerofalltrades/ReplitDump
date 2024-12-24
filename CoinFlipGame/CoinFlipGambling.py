@@ -190,7 +190,8 @@ def main():
                     answerGiven = 0
                 printAndPause("Mysterious Man: Continue on with my companion.")
             elif saveCode == "":
-                printAndPause("Mysterious Man: Continue on with my companion.")
+                printAndPause("Mysterious Man: Let's get you set up then.")
+                startUp()
                 answerGiven = 1
             else:
                 printAndPause("Mysterious Man: That is an invalid save code.")
@@ -324,6 +325,7 @@ def main():
         #'Own Knowledge' ending: Refuse Wise Messenger's help but still kill flipper
         #'YOU IDIOT' ending: Refuse Wise Messenger's help and reach mercy ending - flipper entraps you
         #Game Over / House always wins
+        
         #random dialogue bits
         if winInARow == 5 and _5FlipDialogue == 0:
             printAndPause("The Flipper: Someone's lucky today.")
