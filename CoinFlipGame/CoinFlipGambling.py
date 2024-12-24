@@ -6,18 +6,37 @@ import math
 
 # Remember to periodically check code with 'pycodestyle --first CoinFlipGambling.py' and 'pylint CoinFlipGambling.py'
 
+def startUp() -> float:
+    """Sets up the game."""
+    textSpeed = input("Settings Tinkerer: Before we start, how fast would like the text to appear? (V for Very Slow, S for Slow, M for Medium or F for Fast) ")
+    notAnswerGiven = True
+    global PAUSESPEED
+    while notAnswerGiven:
+        notAnswerGiven = False  
+        if textSpeed.lower() == "v":
+            PAUSESPEED = 1
+        elif textSpeed.lower() == "s":
+            PAUSESPEED = 0.75
+        elif textSpeed.lower() == "m":
+            PAUSESPEED = 0.5
+        elif textSpeed.lower() == "f":
+            PAUSESPEED = 0.35
+        else:
+            notAnswerGiven = True
+            textSpeed = input("Settings Tinkerer: Please enter a valid input. (V for Very Slow, S for Slow, M for Medium or F for Fast) ")
+        printAndPause("Settings Tinkerer: Have fun with the game!")
 
-def saveCodeGenerator(money, trinketSave, trinkets, flips, oldManEncounters, oldManPower, winInARow, rubikssolved, wiseMessengerEncounters):
+def saveCodeGenerator(money, trinketSave, trinkets, flips, oldManEncounters, oldManPower, winInARow, rubikssolved, wiseMessengerEncounters) -> str:
     """Produces a save code, after compressing the user's trinkets."""
     trinketSave = "".join(str(item) for item in trinkets)
-    newSaveCode = f"ValidSave:Money:{money}Flips:{flips}OldMan:{oldManEncounters}OldManPow:{oldManPower}WinRow:{winInARow}Trinkets:{trinketSave}CubeSolve:{rubikssolved}WiseMessenger:{wiseMessengerEncounters}".encode("utf-8").hex()
+    newSaveCode = f"ValidSave:Money:{money}Flips:{flips}OldMan:{oldManEncounters}OldManPow:{oldManPower}WinRow:{winInARow}Trinkets:{trinketSave}CubeSolve:{rubikssolved}WiseMessenger:{wiseMessengerEncounters}Pause:{PAUSESPEED}".encode("utf-8").hex()
     return newSaveCode
 
 
 def printAndPause(input, timemodifier=1):
     """Prints with a Generic time.sleep() shortcut - timemodifier is multiplied by 0.25 and inputted into a time.sleep() function."""
     print(input)
-    time.sleep(0.25*timemodifier)
+    time.sleep(PAUSESPEED*timemodifier)
 
 
 def viewTrinkets(trinkets, flips, rubikssolved, money) -> int:
@@ -133,17 +152,18 @@ def main():
     rubikssolved = 0
     result = ""
     wiseMessengerEncounters = 0
-    printAndPause("The Flipper: Welcome to the world's best casino: We have one enthralling game here.")    
-    printAndPause("The Flipper: Our game is gambling on a coin flip. You start with 100 flipcoin.")    
+    print("The Flipper: Welcome to the world's best casino: We have one enthralling game here.")    
+    print("The Flipper: Our game is gambling on a coin flip. You start with 100 flipcoin.")    
     hereBefore = input("The Flipper: If you have wasted your time here before, enter 1, else enter 2. ")
     # savecode code
     if hereBefore == "1":
         while answerGiven == 0:
-            printAndPause("Mysterious Man: Welcome to my Save Cove.")
+            print("Mysterious Man: Welcome to my Save Cove.")
             hexSaveCode = input("Mysterious Man: If you do not have a save press enter. Else please enter your save code: ")
             bytesObj = bytes.fromhex(hexSaveCode)
             saveCode = bytesObj.decode('utf-8')
             if saveCode.find("ValidSave:") != -1:
+                global PAUSESPEED
                 money = int(saveCode[(saveCode.find("Money:")+6):(saveCode.find("Flips:"))])
                 flips = int(saveCode[(saveCode.find("Flips:")+6):saveCode.find("OldMan:")])
                 oldManEncounters = int(saveCode[(saveCode.find("OldMan:")+7):saveCode.find("OldManPow:")])
@@ -151,7 +171,8 @@ def main():
                 winInARow = int(saveCode[(saveCode.find("WinRow:")+7):saveCode.find("Trinkets:")])
                 trinkets = list(str(saveCode[(saveCode.find("Trinkets:")+9):saveCode.find("CubeSolve:")]))
                 rubikssolved = int(saveCode[(saveCode.find("CubeSolve:")+10):saveCode.find("WiseMessenger:")])
-                wiseMessengerEncounters = round(float(saveCode[(saveCode.find("WiseMessenger:")+14):len(saveCode)]),1)
+                wiseMessengerEncounters = round(float(saveCode[(saveCode.find("WiseMessenger:")+14):saveCode.find("Pause:")]),1)
+                PAUSESPEED = float(saveCode[(saveCode.find("Pause:")+6):])
                 answerGiven = 1
                 if math.log2(money) - math.log2(100) > flips:
                     printAndPause("Mysterious Man: That is an illegal code.")
@@ -162,6 +183,8 @@ def main():
                 answerGiven = 1
             else:
                 printAndPause("Mysterious Man: That is an invalid save code.")
+    else:
+        startUp()
     printAndPause("The Flipper: Welcome to the Casino! Let's gamble on a coin toss!")    
     while money > 0:
         stake = 0
@@ -332,8 +355,7 @@ def main():
             trinkets[3] = "4"
         if flips == 1000 and "5" not in trinkets:
             printAndPause("The Flipper: You're our most loyal customer ever...")            
-            printAndPause("The Flipper: So here, an artifact older than time itself, something that has been handed down from generation to generation.")
-            pause(2)
+            printAndPause("The Flipper: So here, an artifact older than time itself, something that has been handed down from generation to generation.",4)
             printAndPause("The Flipper: A golden spear.")
             trinkets[4] = "5"
         if flips >= 500 and oldManEncounters == 4 and "6" not in trinkets:
