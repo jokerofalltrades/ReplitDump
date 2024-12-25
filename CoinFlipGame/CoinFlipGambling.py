@@ -69,7 +69,7 @@ def viewTrinkets(trinkets, flips, rubikssolved, money) -> int:
              "placeholder" if "10" in trinkets else "???"]
     printAndPause("The Flipper: Not this troublesome pack again...")
     while True:
-        printAndPause("Packsy: Hey there traveller!")
+        printAndPause("Packsy: Hey there traveller!")     
         printAndPause("Packsy: You wish to know more about your trinkets... Sure!",8)
         printAndPause(f"Packsy: Here are your trinkets:\n1: {items[0]}\n2: {items[1]}\n3: {items[2]}\n4: {items[3]}\n5: {items[4]}\n6: {items[5]}\n7: {items[6]}\n8: {items[7]}\n9: {items[8]}\n10: {items[9]}",2)
         response = inputAndClear("Packsy: Would you like to view additional information about one of these? If so type their number, else press enter. ")
@@ -77,18 +77,18 @@ def viewTrinkets(trinkets, flips, rubikssolved, money) -> int:
         if response == "":
             return money
         if response == "1" and items[0] != "???":
-            printAndPause("Packsy: So, you wish to know more about the spider's eye?")
-            printAndPause("Packsy: Let me read you an exercpt from its description...")
+            printAndPause("Packsy: So, you wish to know more about the spider's eye?")            
+            printAndPause("Packsy: Let me read you an exercpt from its description...")            
             printAndPause("Packsy: 'The spider eye is an eye from a spider. It gleams and glistens with a deep red colour in the light. Utterly Disgusting.'",12)
             tempresponse = inputAndClear("Packsy: Inspiring, isn't it! Press enter to continue playing, or type 1 to find out about another trinket. ")
         elif response == "2" and items[1] != "???":
-            printAndPause("Packsy: So, you wish to find out about the Poster?")
-            printAndPause("Packsy: Let me read you an exercpt from its description...")
+            printAndPause("Packsy: So, you wish to find out about the Poster?")           
+            printAndPause("Packsy: Let me read you an exercpt from its description...")            
             printAndPause("Packsy: 'This poster inspires any and all gamblers to Keep on Flipping.'",12)
             tempresponse = inputAndClear("Packsy: Inspiring, isn't it! Press enter to continue playing, or type 1 to find out about another trinket. ")
         elif response == "3" and items[2] != "???":
-            printAndPause("Packsy: So, you wish to find out about the Rubik's Cube Keychain?")
-            printAndPause("Packsy: Let me read you an exercpt from its description...")
+            printAndPause("Packsy: So, you wish to find out about the Rubik's Cube Keychain?")            
+            printAndPause("Packsy: Let me read you an exercpt from its description...")            
             printAndPause("Packsy: 'Puzzling, isn't it. This cube has stumped many countless minds for decades. The one who solves it must be a nerd.'",12)
             if rubiksdialogue == 0:
                 rubiksdialogue = 1
@@ -96,30 +96,30 @@ def viewTrinkets(trinkets, flips, rubikssolved, money) -> int:
                 printAndPause("Packsy: Wait? Another Dialogue Option!",6)
             tempresponse = inputAndClear("Packsy: Press enter to continue playing, or type 1 to find out about another trinket, or 2 for a mystery dialogue option! ")
         elif response == "4" and items[3] != "???":
-            printAndPause(f"Packsy: So, you wish to find out about the {items[3]}?")
-            printAndPause("Packsy: Let me read you an exercpt from its description...")
+            printAndPause(f"Packsy: So, you wish to find out about the {items[3]}?")            
+            printAndPause("Packsy: Let me read you an exercpt from its description...")            
             if items[3] == "Half-Eaten Waffle":
                 printAndPause("Packsy: 'A half-eaten, unappetising waffle. You wonder who would be so stupid as to not finish their waffle. Might go moldy soon.'")
             else:
                 printAndPause("Packsy: Euhhh... That stinks. 'A half-eaten, moldy waffle. It stinks really badly...' Euhhh, my eyes are watering.",12)
             tempresponse = inputAndClear("Packsy: Inspiring, isn't it! Press enter to continue playing, or type 1 to find out about another trinket. ")
         elif response == "5" and items[4] != "???":
-            printAndPause("Packsy: So, you wish to find out about the Golden Spear?")
-            printAndPause("Packsy: Let me read you an exercpt from its description...")
+            printAndPause("Packsy: So, you wish to find out about the Golden Spear?")            
+            printAndPause("Packsy: Let me read you an exercpt from its description...")            
             printAndPause("Packsy: 'A Golden Spear, thousands of years old. Its handle and blade have been meticulously crafted to ensure a sharp edge.'",12)
             tempresponse = inputAndClear("Packsy: Inspiring, isn't it! Press enter to continue playing, or type 1 to find out about another trinket. ")
         elif response == "6" and items[5] != "???":
-            printAndPause("Packsy: So, you wish to find out about the Old Man's Skeleton?")
-            printAndPause("Packsy: Poor guy...")
-            printAndPause("Packsy: Did he really deser-")
+            printAndPause("Packsy: So, you wish to find out about the Old Man's Skeleton?")            
+            printAndPause("Packsy: Poor guy...")            
+            printAndPause("Packsy: Did he really deser-")            
             printAndPause("The Flipper: Keep your mouth shut. If you want to li- be my friend.",4)
-            printAndPause("Packsy: ...")
-            printAndPause("Packsy: Let me read you an exercpt from its description then...")
+            printAndPause("Packsy: ...")            
+            printAndPause("Packsy: Let me read you an exercpt from its description then...")            
             printAndPause("Packsy: 'The Old Man's Skeleton. Comprised of 206 bones.'",8)
             printAndPause("Packsy: Hold up. I think I see something written on the skeleton.",8)
             tempresponse = inputAndClear("Packsy: Hmm... Press enter to continue playing, type 1 to find out about another trinket or type 2 to inspect the skeleton. ")
         if tempresponse == "0":
-            printAndPause("Packsy: You don't have that trinket, silly!")
+            printAndPause("Packsy: You don't have that trinket, silly!")            
             tempresponse = inputAndClear("Packsy: Press enter to continue playing, or type 1 to find out about another trinket. ")
         # For responses following a normal trinket
         if tempresponse == "":
@@ -128,7 +128,7 @@ def viewTrinkets(trinkets, flips, rubikssolved, money) -> int:
             if rubikssolved == 0:
                 rubikssolved = 1
                 printAndPause("Packsy: You want to solve it? Here!",12)
-                printAndPause("Packsy: Oh n- Wai- What? You solved it?")
+                printAndPause("Packsy: Oh n- Wai- What? You solved it?")                
                 printAndPause("Packsy: Here, have 50 flipcoin!")
                 money += 50
                 tempresponse = inputAndClear("Packsy: Press enter to continue playing, or type 1 to find out about another trinket. ")
@@ -138,7 +138,7 @@ def viewTrinkets(trinkets, flips, rubikssolved, money) -> int:
         if tempresponse == "2" and response == "6":
             printAndPause("Packsy: Let's have a closer look shall we...",2)
             printAndPause("Packsy: *inaudible muttering*",6)
-            printAndPause("Packsy: Oh! There! Look! It's a... poem?",2)
+            printAndPause("Packsy: Oh! There! Look! It's a... poem?",2)            
             printAndPause("Packsy: 'Mold makes watery eyes\nand spears do make HIM cry\nand just 2g of cyanide to make HIM die'",12)
             printAndPause("Packsy: Interesting... Ominous... I wonder who they're talking about when the say HIM...",8)
             tempresponse = inputAndClear("Packsy: Anyway, Press enter to continue playing, or type 1 to find out about another trinket. ")
@@ -166,8 +166,8 @@ def main():
     rubikssolved = 0
     result = ""
     wiseMessengerEncounters = 0
-    print("The Flipper: Welcome to the world's best casino: We have one enthralling game here.")
-    print("The Flipper: Our game is gambling on a coin flip. You start with 100 flipcoin.")
+    print("The Flipper: Welcome to the world's best casino: We have one enthralling game here.")    
+    print("The Flipper: Our game is gambling on a coin flip. You start with 100 flipcoin.")    
     hereBefore = inputAndClear("The Flipper: If you have wasted your time here before, enter 1, else enter 2. ")
     # savecode code
     if hereBefore == "1":
@@ -201,13 +201,13 @@ def main():
     else:
         startUp()
     clear()
-    printAndPause("The Flipper: Welcome to the Casino! Let's gamble on a coin toss!")
+    printAndPause("The Flipper: Welcome to the Casino! Let's gamble on a coin toss!")    
     while money > 0:
         stake = 0
         bet = ""
-        printAndPause(f"The Flipper: You currently have {money} flipcoin.")
+        printAndPause(f"The Flipper: You currently have {money} flipcoin.")        
         printAndPause("The Flipper: Do you want to bet on heads, tails, or landing on its edge?",0)
-        bet = input("The Flipper: Odds: Heads - x1.9 your stake, Tails - x1.9 your stake, Edge - x500 your stake (Enter Heads, Tails or Edge) ")
+        bet = input("The Flipper: Odds: Heads - x1.9 your stake, Tails - x1.9 your stake, Edge - x500 your stake (Enter H for Heads, T for Tails or E for Edge) ").lower()       
         # check for valid stake
         while True:
             stake = input("The Flipper: How much do you want to bet? ")
@@ -218,9 +218,14 @@ def main():
                 stake = 0
             else:
                 stake = int(math.ceil(stake))
-                if 0 < stake <= money: break
-                printAndPause("The Flipper: That is an invalid stake.")
-        bet = bet.lower()
+                if 0 < stake <= money: break                
+                printAndPause("The Flipper: That is an invalid stake.")            
+        if bet == "h":
+            bet = "heads"
+        elif bet == "t":
+            bet = "tails"
+        elif bet == "e":
+            bet = "edge"
         money -= stake
         flips += 1
         #decides coin flip
@@ -236,20 +241,20 @@ def main():
             else:
                 winamount = round(stake*500)
                 money += winamount
-                printAndPause("The Flipper: Impressive. You won while betting on edge. Very brave of you.")
+                printAndPause("The Flipper: Impressive. You won while betting on edge. Very brave of you.")                
             if winInARow > 0:
                 winInARow += 1
             else:
                 winInARow = 1
-            printAndPause(f"The Flipper: Wow! You won {winamount} flipcoin! Care to play again?")
+            printAndPause(f"The Flipper: Wow! You won {winamount} flipcoin! Care to play again?")            
             response = inputAndClear("The Flipper: Press 1 to play again, 2 to get your save code, 3 to view your trinkets and 4 to leave. ")
         else:
             if winInARow < 0 and bet != "edge":
                 winInARow -= 1
             else:
                 winInARow = -1
-            printAndPause(f"The Flipper: Oh dear... It was {result}, you lost. Care to play again?")
-            response = inputAndClear("The Flipper: Press 1 to play again, 2 to get your save code, 3 to view your trinkets and 4 to leave. ")
+            printAndPause(f"The Flipper: Oh dear... It was {result}, you lost. Care to play again?")            
+            response = inputAndClear("The Flipper: Press 1 to play again, 2 to get your save code, 3 to view your trinkets and 4 to leave. ")            
         if response == "4":
             response = inputAndClear("The Flipper: Are you sure you want to leave? Press 1 to return to the game, 2 to get your save code and leave and 3 to just leave. ")
             if response == "2":
@@ -261,7 +266,7 @@ def main():
         if response == "2":
             printAndPause(f"Mysterious Man: {saveCodeGenerator(money, trinketSave, trinkets, flips, oldManEncounters, oldManPower, winInARow, rubikssolved, wiseMessengerEncounters)}")
         if response == "3":
-            money = viewTrinkets(trinkets, flips, rubikssolved, money)
+            money = viewTrinkets(trinkets, flips, rubikssolved, money)        
         #old man stuff
         if oldManPower > 0: oldManPower -= 1
         if random.randint(1,50) == 50:
@@ -292,19 +297,19 @@ def main():
         #wise messenger
         if oldManEncounters >= 4 and flips >= 700 + (50 * wiseMessengerEncounters):
             if wiseMessengerEncounters == 0:
-                printAndPause("???: You haven't met me before have you?",4)
-                printAndPause("???: I've been brought here to free you from this loop.",4)
+                printAndPause("???: You haven't met me before have you?",4)                
+                printAndPause("???: I've been brought here to free you from this loop.",4)                
                 printAndPause("Wise Messenger: I am the Wise Messenger.",4)
                 wiseMessengerEncounters += 1
             elif wiseMessengerEncounters == 1:
-                printAndPause("Wise Messenger: Why should you want escape you may ask...",4)
-                printAndPause("Wise Messenger: You see, HE is evil. He's in it for the money only.",4)
-                printAndPause("Wise Messenger: There's an old tale that his servant has killed more than 500 'robbers' as HE calls them.",4)
+                printAndPause("Wise Messenger: Why should you want escape you may ask...",4)                
+                printAndPause("Wise Messenger: You see, HE is evil. He's in it for the money only.",4)                
+                printAndPause("Wise Messenger: There's an old tale that his servant has killed more than 500 'robbers' as HE calls them.",4)                
                 printAndPause("Wise Messenger: Be Back Soon.",4)
                 wiseMessengerEncounters += 2
             elif wiseMessengerEncounters == 3:
-                printAndPause("Wise Messenger: If you want to escape his clutches, you will have to kill him.",4)
-                printAndPause("Wise Messenger: I can help out with this quest but you will have to do the killing yourself.",4)
+                printAndPause("Wise Messenger: If you want to escape his clutches, you will have to kill him.",4)            
+                printAndPause("Wise Messenger: I can help out with this quest but you will have to do the killing yourself.",4)                
                 #Key Event
                 wiseMessengerHelp = inputAndClear("Wise Messenger: So, do you want to join me and slay HIM once and for all. (Yes or No) ")
                 if wiseMessengerHelp.lower() == "yes":
@@ -312,7 +317,7 @@ def main():
                 else:
                     wiseMessengerEncounters += 0.1
             elif wiseMessengerEncounters == 3.1:
-                printAndPause("Wise Messenger: Listen it would be better for both of us if you joined me to slay HIM.",4)
+                printAndPause("Wise Messenger: Listen it would be better for both of us if you joined me to slay HIM.",4)                
                 wiseMessengerHelp = inputAndClear("Wise Messenger: So, do you want to join me and slay HIM once and for all. (Yes or No) ")
                 if wiseMessengerHelp.lower() == "yes":
                     wiseMessengerEncounters = 3.4
@@ -328,7 +333,7 @@ def main():
         #'Own Knowledge' ending: Refuse Wise Messenger's help but still kill flipper
         #'YOU IDIOT' ending: Refuse Wise Messenger's help and reach mercy ending - flipper entraps you
         #Game Over / House always wins
-
+        
         #random dialogue bits
         if winInARow == 5 and _5FlipDialogue == 0:
             printAndPause("The Flipper: Someone's lucky today.")
@@ -340,47 +345,47 @@ def main():
             printAndPause("The Flipper: Someone's extremely lucky toady.")
             _10FlipDialogue = 1
         if winInARow == -10 and _10FlipDialogue2 == 0:
-            printAndPause("The Flipper: Someone's extremely unlucky today.")
-            printAndPause(f"The Flipper: Here. A gift. 10% of your flipcoin.")
+            printAndPause("The Flipper: Someone's extremely unlucky today.")            
+            printAndPause(f"The Flipper: Here. A gift. 10% of your flipcoin.")            
             printAndPause(f"The Flipper: Enjoy your {int(money*0.1)} flipcoin.")
             money = int(money*1.1)
         if money >= 1000 and _10FlipDialogue2 == 1 and taxDialogue == 0:
-            printAndPause("The Flipper: Remember when I gave you some flipcoin?")
+            printAndPause("The Flipper: Remember when I gave you some flipcoin?")            
             printAndPause("The Flipper: I'll need some back. 10% to be exact.")
             money = round(money*0.9)
             taxDialogue = 1
         #trinkets
         if flips == 20 and "1" not in trinkets:
-            printAndPause("The Flipper: Here. A trinket of thanks.")
-            printAndPause("The Flipper: Enjoy my spider eye.")
+            printAndPause("The Flipper: Here. A trinket of thanks.")            
+            printAndPause("The Flipper: Enjoy my spider eye.")            
             printAndPause("The Flipper: Keep it safe.")
             trinkets[0] = "1"
         if flips == 50 and "2" not in trinkets:
-            printAndPause("The Flipper: Huh. You seem to really like playing.")
-            printAndPause("The Flipper: Well... seen as you're still here...")
+            printAndPause("The Flipper: Huh. You seem to really like playing.")            
+            printAndPause("The Flipper: Well... seen as you're still here...")            
             printAndPause("The Flipper: Have this 'Keep on Flipping' poster.")
             trinkets[1] = "2"
         if flips == 100 and "3" not in trinkets:
-            printAndPause("The Flipper: You seem to like hanging around here.")
-            printAndPause("The Flipper: A puzzle, to pass the time...")
+            printAndPause("The Flipper: You seem to like hanging around here.")            
+            printAndPause("The Flipper: A puzzle, to pass the time...")            
             printAndPause("The Flipper: You can have a Rubik's Cube keychain.")
             trinkets[2] = "3"
         if flips == 250 and "4" not in trinkets:
-            printAndPause("The Flipper: You really are dedicated to this...")
-            printAndPause("The Flipper: So I may as well award you.")
+            printAndPause("The Flipper: You really are dedicated to this...")            
+            printAndPause("The Flipper: So I may as well award you.")            
             printAndPause("The Flipper: You can have my half-eaten waffle.")
             trinkets[3] = "4"
         if flips == 1000 and "5" not in trinkets:
-            printAndPause("The Flipper: You're our most loyal customer ever...")
+            printAndPause("The Flipper: You're our most loyal customer ever...")            
             printAndPause("The Flipper: So here, an artifact older than time itself, something that has been handed down from generation to generation.",4)
             printAndPause("The Flipper: A golden spear.")
             trinkets[4] = "5"
         if flips >= 500 and oldManEncounters == 4 and "6" not in trinkets:
-            printAndPause("The Flipper: You seem to really miss that old man...")
-            printAndPause("The Flipper: Here. A memory of him. His skeleton.")
+            printAndPause("The Flipper: You seem to really miss that old man...")            
+            printAndPause("The Flipper: Here. A memory of him. His skeleton.")            
             printAndPause("The Flipper: He would have wanted you to have had it anyway.")
             trinkets[5] = "6"
-        #Add more dialogue
+        #Add more dialogue        
 
     if killScene == 1 and money > 100:
         printAndPause("*As you begin to walk away you hear The Flipper bark orders at his servant.*",4)
@@ -391,7 +396,7 @@ def main():
     elif money > 0:
         printAndPause("The Flipper: Thanks for playing! See you again soon!",0)
     else:
-        printAndPause("The Flipper: What a disappointing end...",2)
+        printAndPause("The Flipper: What a disappointing end...",2)        
         printAndPause("The Flipper: Thanks for your money.",0)
 
 if __name__ == "__main__":
