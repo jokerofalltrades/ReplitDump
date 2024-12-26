@@ -207,7 +207,7 @@ def main():
         bet = ""
         printAndPause(f"The Flipper: You currently have {money} flipcoin.")
         printAndPause("The Flipper: Do you want to bet on heads, tails, or landing on its edge?",0)
-        bet = input("The Flipper: Odds: Heads - x1.9 your stake, Tails - x1.9 your stake, Edge - x500 your stake (Enter Heads, Tails or Edge) ")
+        bet = input("The Flipper: Odds: Heads - x1.9 your stake, Tails - x1.9 your stake, Edge - x500 your stake (Enter H for Heads, T for Tails or E for Edge) ")
         # check for valid stake
         while True:
             stake = input("The Flipper: How much do you want to bet? ")
