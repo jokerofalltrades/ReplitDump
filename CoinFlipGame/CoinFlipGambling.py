@@ -6,6 +6,25 @@ import math
 import os
 
 # Remember to periodically check code with 'pycodestyle --first CoinFlipGambling.py' and 'pylint CoinFlipGambling.py'
+# TODO:
+# - Add more trinkets
+# - Add the abillity to equip a trinket
+# - Code in the moldy waffle stuff to water his eyes
+# - Figure out what the 9th trinket is (the one that kills him)
+# - trinket 10 is probably random chance per flip (1 in 500?, 1 in 250?)
+# - Endings:
+#Murder ending: Kill the Flipper
+#Mercy Ending: About to kill Flipper but spare him
+#Use for mercy ending: Thomas: Hello I'm so big right now im the grey (so big)
+#Puppet ending: Refuse the Wise messenger's help and reach 1500 flips
+#'Own Knowledge' ending: Refuse Wise Messenger's help but still kill flipper
+#'YOU IDIOT' ending: Refuse Wise Messenger's help and reach mercy ending - flipper entraps you
+#Game Over / House always wins
+# - Add endings tracker, give special trinket 11 if you reach all canonical endings
+# - Use Thomas as playtester
+# - Possibly improve encryption of save code? (maybe post release update)
+# - Keep a record of saves / savebank
+
 
 def startUp() -> float:
     """Sets up the game."""
@@ -325,14 +344,6 @@ def main():
                     printAndPause("Wise Messenger: If you so wish, I shall leave you to it. Enjoy being HIS puppet.",4)
             elif wiseMessengerEncounters == 3.4:
                 pass
-
-        #Murder ending: Kill the Flipper
-        #Mercy Ending: About to kill Flipper but spare him
-        #Use for mercy ending: Thomas: Hello I'm so big right now im the grey (so big)
-        #Puppet ending: Refuse the Wise messenger's help and reach 1500 flips
-        #'Own Knowledge' ending: Refuse Wise Messenger's help but still kill flipper
-        #'YOU IDIOT' ending: Refuse Wise Messenger's help and reach mercy ending - flipper entraps you
-        #Game Over / House always wins
 
         #random dialogue bits
         if winInARow == 5 and _5FlipDialogue == 0:
