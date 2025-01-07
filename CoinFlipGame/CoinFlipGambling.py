@@ -11,7 +11,6 @@ import os
 # - Add the abillity to equip a trinket
 # - Code in the moldy waffle stuff to water his eyes
 # - Figure out what the 9th trinket is (the one that kills him)
-# - trinket 10 is probably random chance per flip (1 in 500?, 1 in 250?)
 # - Endings:
 # Murder ending: Kill the Flipper
 # Mercy Ending: About to kill Flipper but spare him
@@ -137,6 +136,11 @@ def viewTrinkets(trinkets, flips, rubikssolved, money) -> int:
             printAndPause("Packsy: 'The Old Man's Skeleton. Comprised of 206 bones.'",8)
             printAndPause("Packsy: Hold up. I think I see something written on the skeleton.",8)
             tempresponse = inputAndClear("Packsy: Hmm... Press enter to continue playing, type 1 to find out about another trinket or type 2 to inspect the skeleton. ")
+        elif response == "10" and items[9] != "???":
+            printAndPause("Packsy: So, you wish to find out about the Four Leaf Clover?")
+            printAndPause("Packsy: Let me read you an exercpt from its description...")
+            printAndPause("Packsy: 'A Four Leaf Clover. Supposed to be a symbol of luck. It seems to have wilted slightly.'",12)
+            tempresponse = inputAndClear("Packsy: Inspiring, isn't it! Press enter to continue playing, or type 1 to find out about another trinket. ")
         if tempresponse == "0":
             printAndPause("Packsy: You don't have that trinket, silly!")
             tempresponse = inputAndClear("Packsy: Press enter to continue playing, or type 1 to find out about another trinket. ")
