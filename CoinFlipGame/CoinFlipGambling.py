@@ -33,16 +33,16 @@ def startUp() -> float:
         if textSpeed.lower() == "v":
             pauseSpeed = 1
             break
-        elif textSpeed.lower() == "s":
+        if textSpeed.lower() == "s":
             pauseSpeed = 0.75
             break
-        elif textSpeed.lower() == "m":
+        if textSpeed.lower() == "m":
             pauseSpeed = 0.5
             break
-        elif textSpeed.lower() == "f":
+        if textSpeed.lower() == "f":
             pauseSpeed = 0.35
             break
-        elif textSpeed.lower() == "x":
+        if textSpeed.lower() == "x":
             pauseSpeed = 0.25
             break
         textSpeed = input("Settings Tinkerer: Please enter a valid input. (V for Very Slow, S for Slow, M for Medium or F for Fast or X for Very Fast) ")
@@ -56,9 +56,9 @@ def saveCodeGenerator(money, trinketSave, trinkets, flips, oldManEncounters, old
     return newSaveCode
 
 
-def printAndPause(input, timemodifier=1):
+def printAndPause(tobePrinted, timemodifier=1):
     """Prints with a Generic time.sleep() shortcut - timemodifier is multiplied by 0.25 and inputted into a time.sleep() function."""
-    print(input)
+    print(tobePrinted)
     time.sleep(pauseSpeed*timemodifier)
 
 def inputAndClear(toPrint) -> str:
