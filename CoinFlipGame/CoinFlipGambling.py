@@ -13,12 +13,12 @@ import os
 # - Figure out what the 9th trinket is (the one that kills him)
 # - trinket 10 is probably random chance per flip (1 in 500?, 1 in 250?)
 # - Endings:
-#Murder ending: Kill the Flipper
-#Mercy Ending: About to kill Flipper but spare him
-#Use for mercy ending: Thomas: Hello I'm so big right now im the grey (so big)
-#Puppet ending: Refuse the Wise messenger's help and reach 1500 flips
-#'Own Knowledge' ending: Refuse Wise Messenger's help but still kill flipper
-#'YOU IDIOT' ending: Refuse Wise Messenger's help and reach mercy ending - flipper entraps you
+# Murder ending: Kill the Flipper
+# Mercy Ending: About to kill Flipper but spare him
+# Use for mercy ending: Thomas: Hello I'm so big right now im the grey (so big)
+# Puppet ending: Refuse the Wise messenger's help and reach 1500 flips
+# 'Own Knowledge' ending: Refuse Wise Messenger's help but still kill flipper
+# 'YOU IDIOT' ending: Refuse Wise Messenger's help and reach mercy ending - flipper entraps you
 #Game Over / House always wins
 # - Add endings tracker, give special trinket 11 if you reach all canonical endings
 # - Use Thomas as playtester
@@ -28,7 +28,7 @@ import os
 
 def startUp() -> float:
     """Sets up the game."""
-    textSpeed = inputAndClear("Settings Tinkerer: Before we start, how fast would like the text to appear? (V for Very Slow, S for Slow, M for Medium or F for Fast or X for Very Fast) ")
+    textSpeed = inputAndClear("Settings Tinkerer: Before we start, how fast would like the text to appear? (V for Very Slow, S for Slow, M for Medium (Default) or F for Fast or X for Very Fast) ")
     global pauseSpeed
     while True:
         if textSpeed.lower() == "v":
@@ -168,6 +168,7 @@ def viewTrinkets(trinkets, flips, rubikssolved, money) -> int:
 
 def main():
     """Runs the main game loop"""
+    global pauseSpeed
     money = 100
     answerGiven = 0
     flips = 0
@@ -185,8 +186,9 @@ def main():
     rubikssolved = 0
     result = ""
     wiseMessengerEncounters = 0
-    print("The Flipper: Welcome to the world's best casino: We have one enthralling game here.")
-    print("The Flipper: Our game is gambling on a coin flip. You start with 100 flipcoin.")
+    pauseSpeed = 0.5
+    printAndPause("The Flipper: Welcome to the world's best casino: We have one enthralling game here.")
+    printAndPause("The Flipper: Our game is gambling on a coin flip. You start with 100 flipcoin.")
     hereBefore = inputAndClear("The Flipper: If you have wasted your time here before, enter 1, else enter 2. ")
     # savecode code
     if hereBefore == "1":
@@ -196,7 +198,6 @@ def main():
             bytesObj = bytes.fromhex(hexSaveCode)
             saveCode = bytesObj.decode('utf-8')
             if saveCode.find("ValidSave:") != -1:
-                global pauseSpeed
                 money = int(saveCode[(saveCode.find("Money:")+6):(saveCode.find("Flips:"))])
                 flips = int(saveCode[(saveCode.find("Flips:")+6):saveCode.find("OldMan:")])
                 oldManEncounters = int(saveCode[(saveCode.find("OldMan:")+7):saveCode.find("OldManPow:")])
@@ -216,7 +217,7 @@ def main():
                 startUp()
                 answerGiven = 1
             else:
-                print("Mysterious Man: That is an invalid save code.")
+                printAndPause("Mysterious Man: That is an invalid save code.")
     else:
         startUp()
     clear()
@@ -396,6 +397,11 @@ def main():
             printAndPause("The Flipper: Here. A memory of him. His skeleton.")
             printAndPause("The Flipper: He would have wanted you to have had it anyway.")
             trinkets[5] = "6"
+        if random.randint(1,400) == 1 and "10" not in trinkets:
+            printAndPause("The Flipper: Lucky.")
+            printAndPause("The Flipper: Here. A Four Leaf Clover.")
+            printAndPause("The Flipper: I've been told it's a symbol of luck.")
+            trinkets[9] = "10"
         #Add more dialogue
 
     if killScene == 1 and money > 100:
