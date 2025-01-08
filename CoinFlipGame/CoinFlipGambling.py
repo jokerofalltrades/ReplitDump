@@ -31,10 +31,10 @@ def startUp() -> float:
     global pauseSpeed
     while True:
         if textSpeed.lower() == "v":
-            pauseSpeed = 1
+            pauseSpeed = 0.9
             break
         if textSpeed.lower() == "s":
-            pauseSpeed = 0.75
+            pauseSpeed = 0.7
             break
         if textSpeed.lower() == "m":
             pauseSpeed = 0.5
@@ -84,7 +84,7 @@ def viewTrinkets(trinkets, flips, rubikssolved, money) -> int:
              "placeholder" if "7" in trinkets else "???",
              "placeholder" if "8" in trinkets else "???",
              "placeholder" if "9" in trinkets else "???",
-             "placeholder" if "10" in trinkets else "???"]
+             "Four-Leaf Clover" if "10" in trinkets else "???"]
     printAndPause("The Flipper: Not this troublesome pack again...")
     while True:
         printAndPause("Packsy: Hey there traveller!")
@@ -169,6 +169,101 @@ def viewTrinkets(trinkets, flips, rubikssolved, money) -> int:
         if tempresponse == "":
             return money
 
+def equipTrinket(flips, rubikssolved, trinkets, equippedTrinket) -> str:
+    items = ["Spider's Eye" if "1" in trinkets else "???",
+             "'Keep on Flipping' Poster" if "2" in trinkets else "???",
+             "Rubik's Cube Keychain" if "3" in trinkets else "???",
+             "Half-Eaten Waffle" if "4" in trinkets and flips <= 300 else
+             "Moldy Half-Eaten Waffle" if "4" in trinkets and flips > 300 else "???",
+             "Golden Spear" if "5" in trinkets else "???",
+             "Old Man's Skeleton" if "6" in trinkets else "???",
+             "placeholder" if "7" in trinkets else "???",
+             "placeholder" if "8" in trinkets else "???",
+             "placeholder" if "9" in trinkets else "???",
+             "Four-Leaf Clover" if "10" in trinkets else "???"]
+    printAndPause("The Flipper: Not this troublesome pack again...")
+    printAndPause("Packsy: Hey there traveller!")
+    printAndPause("Packsy: You wish to equip a trinket... Sure!",8)
+    printAndPause(f"Packsy: Here are your trinkets:\n1: {items[0]}\n2: {items[1]}\n3: {items[2]}\n4: {items[3]}\n5: {items[4]}\n6: {items[5]}\n7: {items[6]}\n8: {items[7]}\n9: {items[8]}\n10: {items[9]}",2)
+    response = inputAndClear("Packsy: Would you like to equip a trinket? If so type their number, else press enter. ")
+    if response == "":
+        return equippedTrinket
+    if equippedTrinket == "":
+        if response == "1" and items[0] != "???":
+            printAndPause("Packsy: So, you wish to equip the Spider's Eye?",2)
+            printAndPause("Packsy: Sure thing!")
+            printAndPause("*The Spider's Eye now lies by your side, its crimson gleam staring into your soul.*",4)
+        if response == "2" and items[1] != "???":
+            printAndPause("Packsy: So, you wish to equip the Poster?",2)
+            printAndPause("Packsy: Sure thing!")
+            printAndPause("*The Poster hangs upon the wall, its motivational message inspiring you.*",4)
+        if response == "3" and items[2] != "???":
+            printAndPause("Packsy: So, you wish to equip the Rubik's Cube Keychain?",2)
+            printAndPause("Packsy: Sure thing!")
+            if rubikssolved == 0:
+                printAndPause("*The Rubik's Cube Keychain now lies by your side, its colourful tiles mesmerising you.*",4)
+            else:
+                printAndPause("*The Rubik's Cube Keychain now lies by your side, its solution reminding you of how smart you are.*",4)
+        if response == "4" and items[3] != "???":
+            printAndPause(f"Packsy: So, you wish to equip the {items[3]}?",2)
+            printAndPause("Packsy: Sure thing!")
+            if items[3] == "Half-Eaten Waffle":
+                printAndPause(f"*The {items[3]} now lies by your side, its sickly smell wafting into your nostrils.*",4)
+            else:
+                printAndPause(f"*The {items[3]} now lies by your side, its moldy smell wafting into your nostrils. Your eyes begin to water slightly.*",6)
+        if response == "5" and items[4] != "???":
+            printAndPause("Packsy: So, you wish to equip the Golden Spear?",2)
+            printAndPause("Packsy: Sure thing!")
+            printAndPause("*The Golden Spear now lies by your side, its golden point reflecting the light.*",4)
+        if response == "6" and items[5] != "???":
+            printAndPause("Packsy: So, you wish to equip the Old Man's Skeleton?",2)
+            printAndPause("Packsy: Sure thing!")
+            printAndPause("*The Old Man's Skeleton now lies in the corner, its bony fingers pointing ominously. There appears to be something on his leg. Maybe you should inspect it closer.*",8)
+        if response == "10" and items[9] != "???":
+            printAndPause("Packsy: So, you wish to equip the Four-Leaf Clover?",2)
+            printAndPause("Packsy: Sure thing!")
+            printAndPause("*The Four-Leaf Clover now lies by your side, its green leaves bringing a sense of luck.*",4)
+    else:
+        replaceTrinket = inputAndClear(f"Packsy: You already have a {equippedTrinket} equipped. Are you sure you would like to replace it? (Y or N) ")
+        if replaceTrinket.lower() == "y":
+            if response == "1" and items[0] != "???":
+                printAndPause("Packsy: So, you wish to equip the Spider's Eye?",2)
+                printAndPause("Packsy: Sure thing!")
+                printAndPause("*The Spider's Eye now lies by your side, its crimson gleam staring into your soul.*",4)
+            if response == "2" and items[1] != "???":
+                printAndPause("Packsy: So, you wish to equip the Poster?",2)
+                printAndPause("Packsy: Sure thing!")
+                printAndPause("*The Poster hangs upon the wall, its motivational message inspiring you.*",4)
+            if response == "3" and items[2] != "???":
+                printAndPause("Packsy: So, you wish to equip the Rubik's Cube Keychain?",2)
+                printAndPause("Packsy: Sure thing!")
+                if rubikssolved == 0:
+                    printAndPause("*The Rubik's Cube Keychain now lies by your side, its colourful tiles mesmerising you.*",4)
+                else:
+                    printAndPause("*The Rubik's Cube Keychain now lies by your side, its solution reminding you of how smart you are.*",4)
+            if response == "4" and items[3] != "???":
+                printAndPause(f"Packsy: So, you wish to equip the {items[3]}?",2)
+                printAndPause("Packsy: Sure thing!")
+                if items[3] == "Half-Eaten Waffle":
+                    printAndPause(f"*The {items[3]} now lies by your side, its sickly smell wafting into your nostrils.*",4)
+                else:
+                    printAndPause(f"*The {items[3]} now lies by your side, its moldy smell wafting into your nostrils. Your eyes begin to water slightly.*",6)
+            if response == "5" and items[4] != "???":
+                printAndPause("Packsy: So, you wish to equip the Golden Spear?",2)
+                printAndPause("Packsy: Sure thing!")
+                printAndPause("*The Golden Spear now lies by your side, its golden point reflecting the light.*",4)
+            if response == "6" and items[5] != "???":
+                printAndPause("Packsy: So, you wish to equip the Old Man's Skeleton?",2)
+                printAndPause("Packsy: Sure thing!")
+                printAndPause("*The Old Man's Skeleton now lies in the corner, its bony fingers pointing ominously. There appears to be something on his leg. Maybe you should inspect it closer.*",8)
+            if response == "10" and items[9] != "???":
+                printAndPause("Packsy: So, you wish to equip the Four-Leaf Clover?",2)
+                printAndPause("Packsy: Sure thing!")
+                printAndPause("*The Four-Leaf Clover now lies by your side, its green leaves bringing a sense of luck.*",4)
+    if items[int(response)-1] == "???":
+        printAndPause("Packsy: You don't have that trinket, silly!")
+    else:
+        return items[int(response)-1]
 
 def main():
     """Runs the main game loop"""
@@ -191,6 +286,7 @@ def main():
     result = ""
     wiseMessengerEncounters = 0
     pauseSpeed = 0.5
+    equippedTrinket = ""
     printAndPause("The Flipper: Welcome to the world's best casino: We have one enthralling game here.")
     printAndPause("The Flipper: Our game is gambling on a coin flip. You start with 100 flipcoin.")
     hereBefore = inputAndClear("The Flipper: If you have wasted your time here before, enter 1, else enter 2. ")
@@ -271,15 +367,15 @@ def main():
             else:
                 winInARow = 1
             printAndPause(f"The Flipper: Wow! You won {winamount} flipcoin! Care to play again?")
-            response = inputAndClear("The Flipper: Press 1 to play again, 2 to get your save code, 3 to view your trinkets and 4 to leave. ")
+            response = inputAndClear("The Flipper: Press 1 to play again, 2 to get your save code, 3 to view your trinkets, 4 to equip a trinket or 5 to leave. ")
         else:
             if winInARow < 0 and bet != "edge":
                 winInARow -= 1
             else:
                 winInARow = -1
             printAndPause(f"The Flipper: Oh dear... It was {result}, you lost. Care to play again?")
-            response = inputAndClear("The Flipper: Press 1 to play again, 2 to get your save code, 3 to view your trinkets and 4 to leave. ")
-        if response == "4":
+            response = inputAndClear("The Flipper: Press 1 to play again, 2 to get your save code, 3 to view your trinkets, 4 to equip a trinket or 5 to leave. ")
+        if response == "5":
             response = inputAndClear("The Flipper: Are you sure you want to leave? Press 1 to return to the game, 2 to get your save code and leave and 3 to just leave. ")
             if response == "2":
                 printAndPause(f"Mysterious Man: {saveCodeGenerator(money, trinketSave, trinkets, flips, oldManEncounters, oldManPower, winInARow, rubikssolved, wiseMessengerEncounters)}")
@@ -291,6 +387,8 @@ def main():
             printAndPause(f"Mysterious Man: {saveCodeGenerator(money, trinketSave, trinkets, flips, oldManEncounters, oldManPower, winInARow, rubikssolved, wiseMessengerEncounters)}")
         if response == "3":
             money = viewTrinkets(trinkets, flips, rubikssolved, money)
+        if response == "4":
+            equippedTrinket = equipTrinket(flips, rubikssolved, trinkets, equippedTrinket)
         #old man stuff
         if oldManPower > 0: oldManPower -= 1
         if random.randint(1,50) == 50:
@@ -348,7 +446,14 @@ def main():
                 else:
                     printAndPause("Wise Messenger: If you so wish, I shall leave you to it. Enjoy being HIS puppet.",4)
             elif wiseMessengerEncounters == 3.4:
-                pass
+                printAndPause("Wise Messenger: Have you tried equipping a trinket yet?",4)
+                if equippedTrinket != "Moldy Half-Eaten Waffle":
+                    if equippedTrinket == "":
+                        printAndPause("Wise Messenger: No? Well maybe play around with them.",4)
+                    else:
+                        printAndPause("Wise Messenger: I see you are well versed in this already. Maybe try some others...",4)
+                    printAndPause("Wise Messenger: And maybe, just maybe they might affect HIM.",4)
+                printAndPause("Wise Messenger: Good. Very good. You're one step closer.",8)
 
         #random dialogue bits
         if winInARow == 5 and _5FlipDialogue == 0:
