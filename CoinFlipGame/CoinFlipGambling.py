@@ -8,7 +8,6 @@ import os
 # Remember to periodically check code with 'pycodestyle --first CoinFlipGambling.py' and 'pylint CoinFlipGambling.py'
 # TODO:
 # - Add more trinkets
-# - Code in the moldy waffle stuff to water his eyes
 # - Figure out what the 9th trinket is (the one that kills him)
 # - Endings:
 # Murder ending: Kill the Flipper
@@ -259,6 +258,25 @@ def equipTrinket(flips, rubikssolved, trinkets, equippedTrinket) -> str:
     else:
         return items[int(response)-1]
 
+def wateryEyes(equippedTrinket, moldyWaffle) -> int:
+    """Checks if the flipper has watery eyes and update the counter."""
+    if equippedTrinket == "Moldy Half-Eaten Waffle" or moldyWaffle < 0:
+        moldyWaffle += 1
+        if moldyWaffle == 10:
+            printAndPause("The Flipper: My eyes are watering? I wonder why...",2)
+        if moldyWaffle == 25:
+            printAndPause("The Flipper: I can barely see anymore my eyes are watering so much...",4)
+        if moldyWaffle == 40:
+            printAndPause("The Flipper: I can't see my eyes are watering so much!",4)
+            printAndPause("The Flipper: I'll try to continue for now...",4)
+        if moldyWaffle == 50:
+            printAndPause("The Flipper: I managed to find my allergy medication. It should stave off the watering eyes for a hundred flips or so.",8)
+            printAndPause("The Flipper: Continue on.")
+            moldyWaffle = -50
+    elif moldyWaffle > 0:
+        moldyWaffle -= 1
+    return moldyWaffle
+
 def main():
     """Runs the main game loop"""
     global pauseSpeed
@@ -282,6 +300,7 @@ def main():
     pauseSpeed = 0.5
     equippedTrinket = ""
     cloverModifier = 0
+    moldyWaffle = 0
     printAndPause("The Flipper: Welcome to the world's best casino: We have one enthralling game here.")
     printAndPause("The Flipper: Our game is gambling on a coin flip. You start with 100 flipcoin.")
     hereBefore = inputAndClear("The Flipper: If you have wasted your time here before, enter 1, else enter 2. ")
@@ -390,6 +409,7 @@ def main():
             else:
                 cloverModifier = 0
             clear()
+        moldyWaffle = wateryEyes(equippedTrinket, moldyWaffle)
         #old man stuff
         if oldManPower > 0: oldManPower -= 1
         if random.randint(1,50) == 50:
