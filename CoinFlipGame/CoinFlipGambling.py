@@ -383,6 +383,7 @@ def main():
             money = viewTrinkets(trinkets, flips, rubikssolved, money)
         if response == "4":
             equippedTrinket = equipTrinket(flips, rubikssolved, trinkets, equippedTrinket)
+            clear()
         #old man stuff
         if oldManPower > 0: oldManPower -= 1
         if random.randint(1,50) == 50:
