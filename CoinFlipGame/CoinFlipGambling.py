@@ -251,7 +251,7 @@ def equipTrinket(flips, rubikssolved, trinkets, equippedTrinket) -> str:
             if response == "10" and items[9] != "???":
                 printAndPause("Packsy: So, you wish to equip the Four-Leaf Clover?",2)
                 printAndPause("Packsy: Sure thing!")
-                printAndPause("*The Four-Leaf Clover now lies by your side, its green leaves bringing a sense of luck.*",4)
+                printAndPause("*The Four-Leaf Clover now lies by your side, its wilted stem giving you a lucky and edgy feeling.*",4)
     if items[int(response)-1] == "???":
         printAndPause("Packsy: You don't have that trinket, silly!")
     else:
