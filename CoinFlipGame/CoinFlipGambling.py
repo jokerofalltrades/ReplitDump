@@ -71,20 +71,23 @@ def clear():
     """Clears the screen."""
     os.system('cls' if os.name=='nt' else 'clear')
 
+def formItems(trinkets, flips) -> list[str]:
+        return ["Spider's Eye" if "1" in trinkets else "???",
+            "'Keep on Flipping' Poster" if "2" in trinkets else "???",
+            "Rubik's Cube Keychain" if "3" in trinkets else "???",
+            "Half-Eaten Waffle" if "4" in trinkets and flips <= 300 else
+            "Moldy Half-Eaten Waffle" if "4" in trinkets and flips > 300 else "???",
+            "Golden Spear" if "5" in trinkets else "???",
+            "Old Man's Skeleton" if "6" in trinkets else "???",
+            "placeholder" if "7" in trinkets else "???",
+            "placeholder" if "8" in trinkets else "???",
+            "placeholder" if "9" in trinkets else "???",
+            "Four-Leaf Clover" if "10" in trinkets else "???"]
+
 def viewTrinkets(trinkets, flips, rubikssolved, money) -> int:
     """Displays information about the player's trinkets."""
     rubiksdialogue = 0
-    items = ["Spider's Eye" if "1" in trinkets else "???",
-             "'Keep on Flipping' Poster" if "2" in trinkets else "???",
-             "Rubik's Cube Keychain" if "3" in trinkets else "???",
-             "Half-Eaten Waffle" if "4" in trinkets and flips <= 300 else
-             "Moldy Half-Eaten Waffle" if "4" in trinkets and flips > 300 else "???",
-             "Golden Spear" if "5" in trinkets else "???",
-             "Old Man's Skeleton" if "6" in trinkets else "???",
-             "placeholder" if "7" in trinkets else "???",
-             "placeholder" if "8" in trinkets else "???",
-             "placeholder" if "9" in trinkets else "???",
-             "Four-Leaf Clover" if "10" in trinkets else "???"]
+    items = formItems(trinkets, flips)
     printAndPause("The Flipper: Not this troublesome pack again...")
     while True:
         printAndPause("Packsy: Hey there traveller!")
@@ -170,17 +173,7 @@ def viewTrinkets(trinkets, flips, rubikssolved, money) -> int:
             return money
 
 def equipTrinket(flips, rubikssolved, trinkets, equippedTrinket) -> str:
-    items = ["Spider's Eye" if "1" in trinkets else "???",
-             "'Keep on Flipping' Poster" if "2" in trinkets else "???",
-             "Rubik's Cube Keychain" if "3" in trinkets else "???",
-             "Half-Eaten Waffle" if "4" in trinkets and flips <= 300 else
-             "Moldy Half-Eaten Waffle" if "4" in trinkets and flips > 300 else "???",
-             "Golden Spear" if "5" in trinkets else "???",
-             "Old Man's Skeleton" if "6" in trinkets else "???",
-             "placeholder" if "7" in trinkets else "???",
-             "placeholder" if "8" in trinkets else "???",
-             "placeholder" if "9" in trinkets else "???",
-             "Four-Leaf Clover" if "10" in trinkets else "???"]
+    items = formItems(trinkets, flips)
     printAndPause("The Flipper: Not this troublesome pack again...")
     printAndPause("Packsy: Hey there traveller!")
     printAndPause("Packsy: You wish to equip a trinket... Sure!",8)
