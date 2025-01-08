@@ -8,7 +8,6 @@ import os
 # Remember to periodically check code with 'pycodestyle --first CoinFlipGambling.py' and 'pylint CoinFlipGambling.py'
 # TODO:
 # - Add more trinkets
-# - Add the abillity to equip a trinket
 # - Code in the moldy waffle stuff to water his eyes
 # - Figure out what the 9th trinket is (the one that kills him)
 # - Endings:
@@ -22,7 +21,7 @@ import os
 # - Add endings tracker, give special trinket 11 if you reach all canonical endings
 # - Use Thomas as playtester
 # - Possibly improve encryption of save code? (maybe post release update)
-# - Keep a record of saves / savebank
+# - Keep a record of saves / savebank (Ongoing)
 
 
 def startUp() -> float:
@@ -280,6 +279,7 @@ def main():
     wiseMessengerEncounters = 0
     pauseSpeed = 0.5
     equippedTrinket = ""
+    cloverModifier = 0
     printAndPause("The Flipper: Welcome to the world's best casino: We have one enthralling game here.")
     printAndPause("The Flipper: Our game is gambling on a coin flip. You start with 100 flipcoin.")
     hereBefore = inputAndClear("The Flipper: If you have wasted your time here before, enter 1, else enter 2. ")
@@ -345,9 +345,9 @@ def main():
         #decides coin flip
         coinFlipDecider = random.randint(1,10000)
         if oldManPower > 0: coinFlipDecider = 1
-        if coinFlipDecider <= 4999: result = "heads"
-        if coinFlipDecider >= 5002: result = "tails"
-        if 5000 <= coinFlipDecider <= 5001: result = "edge"
+        if coinFlipDecider <= (4999 - cloverModifier): result = "heads"
+        if coinFlipDecider >= (5002 + cloverModifier): result = "tails"
+        if (5000 - cloverModifier) <= coinFlipDecider <= (5001 + cloverModifier): result = "edge"
         if result == bet:
             if bet != "edge":
                 winamount = round(stake*1.9)
@@ -383,6 +383,10 @@ def main():
             money = viewTrinkets(trinkets, flips, rubikssolved, money)
         if response == "4":
             equippedTrinket = equipTrinket(flips, rubikssolved, trinkets, equippedTrinket)
+            if equippedTrinket == "Four-Leaf Clover":
+                cloverModifier = 1
+            else:
+                cloverModifier = 0
             clear()
         #old man stuff
         if oldManPower > 0: oldManPower -= 1
