@@ -49,10 +49,10 @@ def startUp() -> float:
     printAndPause("Settings Tinkerer: Have fun with the game!")
 
 
-def saveCodeGenerator(money, trinketSave, trinkets, flips, oldManEncounters, oldManPower, winInARow, rubikssolved, wiseMessengerEncounters) -> str:
+def saveCodeGenerator(money, trinketSave, trinkets, flips, oldManEncounters, oldManPower, winInARow, rubikssolved, wiseMessengerEncounters, equippedTrinket) -> str:
     """Produces a save code, after compressing the user's trinkets."""
     trinketSave = "".join(str(item) for item in trinkets)
-    newSaveCode = f"ValidSave:Money:{money}Flips:{flips}OldMan:{oldManEncounters}OldManPow:{oldManPower}WinRow:{winInARow}Trinkets:{trinketSave}CubeSolve:{rubikssolved}WiseMessenger:{wiseMessengerEncounters}Pause:{pauseSpeed}".encode("utf-8").hex()
+    newSaveCode = f"ValidSave:Money:{money}Flips:{flips}OldMan:{oldManEncounters}OldManPow:{oldManPower}WinRow:{winInARow}Trinkets:{trinketSave}CubeSolve:{rubikssolved}WiseMessenger:{wiseMessengerEncounters}Pause:{pauseSpeed}EquipTrinket:{equippedTrinket}".encode("utf-8").hex()
     return newSaveCode
 
 
@@ -299,7 +299,8 @@ def main():
                 trinkets = list(str(saveCode[(saveCode.find("Trinkets:")+9):saveCode.find("CubeSolve:")]))
                 rubikssolved = int(saveCode[(saveCode.find("CubeSolve:")+10):saveCode.find("WiseMessenger:")])
                 wiseMessengerEncounters = round(float(saveCode[(saveCode.find("WiseMessenger:")+14):saveCode.find("Pause:")]),1)
-                pauseSpeed = float(saveCode[(saveCode.find("Pause:")+6):])
+                pauseSpeed = float(saveCode[(saveCode.find("Pause:")+6):saveCode.find("EquipTrinket:")])
+                equippedTrinket = saveCode[(saveCode.find("EquipTrinket:")+13):]
                 answerGiven = 1
                 if math.log2(money) - math.log2(100) > flips:
                     printAndPause("Mysterious Man: That is an illegal code.")
@@ -371,13 +372,13 @@ def main():
         if response == "5":
             response = inputAndClear("The Flipper: Are you sure you want to leave? Press 1 to return to the game, 2 to get your save code and leave and 3 to just leave. ")
             if response == "2":
-                printAndPause(f"Mysterious Man: {saveCodeGenerator(money, trinketSave, trinkets, flips, oldManEncounters, oldManPower, winInARow, rubikssolved, wiseMessengerEncounters)}")
+                printAndPause(f"Mysterious Man: {saveCodeGenerator(money, trinketSave, trinkets, flips, oldManEncounters, oldManPower, winInARow, rubikssolved, wiseMessengerEncounters, equippedTrinket)}")
                 break
             if response == "3":
                 killScene = 1
                 break
         if response == "2":
-            printAndPause(f"Mysterious Man: {saveCodeGenerator(money, trinketSave, trinkets, flips, oldManEncounters, oldManPower, winInARow, rubikssolved, wiseMessengerEncounters)}")
+            printAndPause(f"Mysterious Man: {saveCodeGenerator(money, trinketSave, trinkets, flips, oldManEncounters, oldManPower, winInARow, rubikssolved, wiseMessengerEncounters, equippedTrinket)}")
         if response == "3":
             money = viewTrinkets(trinkets, flips, rubikssolved, money)
         if response == "4":
