@@ -15,19 +15,12 @@ while True:
         if 0 < numToFind <= 100: break
         print("Please input a valid number.")
 
-high = len(listOfNums)
-low = 0
-mid = high // 2
 comparisons = 0
-while numToFind != listOfNums[mid]:
-    mid = (high + low) // 2
-    if numToFind not in listOfNums:
-        print(f"{numToFind} is not found in the list.")
+print(listOfNums)
+for num in listOfNums:
+    if num == numToFind:
+        print(f"{numToFind} found at index {comparisons}, after {comparisons + 1} comparisons.")
         break
-    elif numToFind > listOfNums[mid]:
-        low = mid + 1
-    elif numToFind < listOfNums[mid]:
-        high = mid - 1
-    else:
-        print(f"{numToFind} is found at index {mid} after {comparisons} comparisons.")
     comparisons += 1
+if comparisons == len(listOfNums):
+    print(f"{numToFind} is not in the list.")
