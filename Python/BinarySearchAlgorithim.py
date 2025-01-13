@@ -1,5 +1,4 @@
 import random
-
 listOfNums = []
 while len(listOfNums) < 20:
     numToAdd = random.randint(1,100)
@@ -19,15 +18,16 @@ high = len(listOfNums)
 low = 0
 mid = high // 2
 comparisons = 0
-while numToFind != listOfNums[mid]:
+def binarySearch(high, low, mid, comparisons):
+    numNotInList = 0
     mid = (high + low) // 2
     if numToFind not in listOfNums:
-        print(f"{numToFind} is not found in the list.")
-        break
+        numNotInList = 1
     elif numToFind > listOfNums[mid]:
-        low = mid + 1
+        mid, comparisons = binarySearch(high, mid + 1, mid, comparisons)
     elif numToFind < listOfNums[mid]:
-        high = mid - 1
-    else:
-        print(f"{numToFind} is found at index {mid} after {comparisons} comparisons.")
-    comparisons += 1
+        mid, comparisons = binarySearch(mid - 1, low, mid, comparisons)
+    return [mid, comparisons + 1] if numNotInList == 0 else [0, 0]
+print(listOfNums)
+mid, comparisons = binarySearch(high, low, mid, comparisons)
+print(f"{numToFind} is found at index {mid} after {comparisons} comparisons." if mid != 0 else f"{numToFind} is not found in the list.")
