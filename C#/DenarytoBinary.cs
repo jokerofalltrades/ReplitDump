@@ -7,12 +7,8 @@ public class Program
     string Binary = "";
     Console.WriteLine("Enter a number");
     long Denary = Convert.ToInt64(Console.ReadLine());
-    int v = 0;
-    while (Math.Pow(2,v) < Denary)
-    {
-      v++;
-    }
-    while (Denary != 0 || v>=0)
+    int v = (int)Math.Log(Denary, 2);
+    while (v>=0)
     {
       if (Math.Pow(2,v) < Denary+1)
       {
@@ -24,6 +20,10 @@ public class Program
         Binary += "0";
       }
       v -= 1;
+    }
+    if (Denary == 0)
+    {
+      Binary = "0";
     }
     Console.WriteLine("Your number is {0} in binary!",Binary);
   }
