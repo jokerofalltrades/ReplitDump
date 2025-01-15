@@ -1,65 +1,60 @@
 import random
 import sys
-
 import pygame
 from pygame.locals import QUIT
 
-o = 0
-swisscheese = []
+# Constants
+WINDOW_SIZE = 300
+GRID_SIZE = 101
+PIXEL_COUNT = GRID_SIZE * GRID_SIZE
+PIXEL_SIZE = 3
+CHEESE_COLOR = (255, 176, 0)
+HOLE_COLOR = (0, 0, 0)
 
+# Initialize Pygame
 pygame.init()
-window = pygame.display.set_mode((300, 300))
+window = pygame.display.set_mode((WINDOW_SIZE, WINDOW_SIZE))
 pygame.display.set_caption('Swiss Cheese')
-while True:
-  pygame.Surface.fill(window, (255, 176, 0))
 
-  def createholes(numberofholes):
-    a = 0
-    holelocations = []
-    while a < numberofholes:
-      holesize = random.randint(1, 10)
-      holelocationx = (random.randint(1, (101 - holesize)))
-      holelocationy = (random.randint(1, (101 - holesize)))
-      i = 0
-      modifier = 0
-      while i < holesize:
-        e = 0
-        while e < holesize:
-          holelocations.append((holelocationy * 101 + holelocationx) +
-                               modifier)
-          e = e + 1
-          modifier = modifier + 1
-        i = i + 1
-        modifier = modifier + (101 - holesize)
-      a = a + 1
-    return holelocations
+def create_holes(number_of_holes):
+    hole_locations = []
+    for _ in range(number_of_holes):
+        hole_size = random.randint(1, 10)
+        hole_x = random.randint(0, GRID_SIZE - hole_size)
+        hole_y = random.randint(0, GRID_SIZE - hole_size)
+        for i in range(hole_size):
+            for j in range(hole_size):
+                hole_locations.append((hole_y + i) * GRID_SIZE + (hole_x + j))
+    return hole_locations
 
-  def drawholes():
-    i = 0
-    for i in range(10201):
-      if swisscheese[i] == 0:
-        mod = 3
-        firstx = int((i % 101) * mod) - mod
-        firsty = int(((i - i % 101) / 101) * mod) - mod
-        pygame.draw.rect(window, (0, 0, 0), (firstx, firsty, mod, mod))
+def draw_holes(swiss_cheese):
+    for i in range(PIXEL_COUNT):
+        if swiss_cheese[i] == 0:
+            x = (i % GRID_SIZE) * PIXEL_SIZE
+            y = (i // GRID_SIZE) * PIXEL_SIZE
+            pygame.draw.rect(window, HOLE_COLOR, (x, y, PIXEL_SIZE, PIXEL_SIZE))
     pygame.display.update()
 
-  numberofholes = int(input("How many holes should there be?"))
-  pygame.Surface.fill(window, (255, 176, 0))
-  o = 0
-  swisscheese.clear()
-  holelocations = createholes(numberofholes)
-  while o < 10201:
-    if o in holelocations:
-      swisscheese.append(0)
-    else:
-      swisscheese.append(1)
-    o = o + 1
+def main():
+    while True:
+        window.fill(CHEESE_COLOR)
+        try:
+            number_of_holes = int(input("How many holes should there be? "))
+        except ValueError:
+            print("Invalid input. Please enter a number.")
+            continue
 
-  drawholes()
+        swiss_cheese = [1] * PIXEL_COUNT
+        hole_locations = create_holes(number_of_holes)
+        for loc in hole_locations:
+            swiss_cheese[loc] = 0
 
-  for event in pygame.event.get():
-    if event.type == QUIT:
-      pygame.quit()
-      sys.exit()
-  pygame.display.update()
+        draw_holes(swiss_cheese)
+
+        for event in pygame.event.get():
+            if event.type == QUIT:
+                pygame.quit()
+                sys.exit()
+
+if __name__ == "__main__":
+    main()
