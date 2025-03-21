@@ -3,7 +3,7 @@ import random
 allpoems = ["Ozymandias","London","Prelude","Last Duchess","COLB","Exposure","Storm","Bayonet Charge","Remains","Poppies","War Photographer","Tissue","Emigree","COMH","Kamikaze"]
 Poems = {
     "Ozymandias":["Exposure","Storm","Last Duchess","Prelude"],
-    "London":["Prelude","Emigree","COMH"],
+    "London":["Prelude","Emigree","COMH","Tissue"],
     "Prelude":["Ozymandias","London","Storm","Kamikaze"],
     "Last Duchess":["COMH","Ozymandias"],
     "COLB":["Poppies","Remains","War Photographer","Bayonet Charge","Exposure"],
@@ -22,19 +22,20 @@ bestlists = []
 bestlen = 15
 for i in range(10000):
     comparedto = []
-    poemspicked = []
+    poemspicked = set()
     while len(comparedto) < 15:
         poemtopick = random.randint(0,14)
         if allpoems[poemtopick] not in poemspicked:
-            poemspicked.append(allpoems[poemtopick])
+            poemspicked.add(allpoems[poemtopick])
             for poem in Poems[allpoems[poemtopick]]:
                 if poem not in comparedto:
                     comparedto.append(poem)
     if len(poemspicked) < bestlen:
         bestlists.clear()
-        bestlists.append(poemspicked[:])
+        bestlists.append(poemspicked)
         bestlen = len(poemspicked)
-    elif len(poemspicked) == bestlen:
-        bestlists.append(poemspicked[:])
-print(bestlists)
+    elif len(poemspicked) == bestlen and poemspicked not in bestlists:
+        bestlists.append(poemspicked)
+for sets in bestlists:
+    print(sets)
 print(bestlen)
