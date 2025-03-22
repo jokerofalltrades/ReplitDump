@@ -1,6 +1,5 @@
 import pygame
 import math
-import numpy as np
 pygame.init()
 screen = pygame.display.set_mode((640, 480))
 def drawRegularPolygon(surface, color, numSides, tiltAngle, x, y, radius, returns = False):
