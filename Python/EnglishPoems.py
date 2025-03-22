@@ -25,7 +25,7 @@ for i in range(10000):
     poemspicked = set()
     while len(comparedto) < 15:
         poemtopick = random.randint(0,14)
-        if allpoems[poemtopick] not in poemspicked:
+        if allpoems[poemtopick] not in poemspicked and allpoems[poemtopick] not in ["Prelude","Last Duchess"]:
             poemspicked.add(allpoems[poemtopick])
             for poem in Poems[allpoems[poemtopick]]:
                 if poem not in comparedto:
