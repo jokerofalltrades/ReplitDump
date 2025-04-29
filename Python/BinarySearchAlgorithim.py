@@ -1,9 +1,6 @@
 import random
-listOfNums = []
-while len(listOfNums) < 20:
-    numToAdd = random.randint(1,100)
-    if numToAdd not in listOfNums: listOfNums.append(numToAdd)
-listOfNums.sort()
+
+listOfNums = sorted(random.sample(range(1, 101), 20))
 
 while True:
     try:
