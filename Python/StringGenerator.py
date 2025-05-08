@@ -23,6 +23,6 @@ while endofu > u:
             sentence += " " + word
     else:
         sentence += "."
-        story += " " + sentence
+        story += sentence
 else:
     print(story)
